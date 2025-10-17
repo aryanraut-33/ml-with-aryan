@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import Image from 'next/image'; // Using Next.js Image for optimization
 import api from '../../lib/api';

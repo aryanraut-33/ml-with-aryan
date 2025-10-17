@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import api from '../../lib/api';
 import styles from './blogs.module.css';
