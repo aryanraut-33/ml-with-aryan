@@ -1,0 +1,79 @@
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1rem;
+  }
+  
+  .videoList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .card {
+    display: flex;
+    gap: 1.5rem;
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #333;
+    transition: border-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+    overflow: hidden; /* Ensures the image corners are rounded */
+  }
+  
+  .card:hover {
+    border-color: #555;
+    transform: translateY(-3px);
+  }
+  
+  .thumbnail {
+      flex-shrink: 0;
+  }
+  
+  .thumbnail img {
+      display: block;
+  }
+  
+  .cardContent {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .cardTitle {
+    font-size: 1.5rem;
+    color: #e0e0e0;
+  }
+  
+  .cardMeta {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    margin: 0.5rem 0;
+  }
+  
+  .cardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  }
+  
+  .views {
+      color: #a0a0a0;
+  }
+  
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .tag {
+    background-color: #333;
+    color: #ccc;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }

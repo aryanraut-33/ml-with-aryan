@@ -1,0 +1,63 @@
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1rem;
+  }
+  
+  .blogList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .card {
+    display: block;
+    background-color: #1c1c1c;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #333;
+    transition: border-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    border-color: #555;
+    transform: translateY(-3px);
+  }
+  
+  .cardTitle {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+  }
+  
+  .cardMeta {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    margin-bottom: 1rem;
+  }
+  
+  .cardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+  
+  .views {
+      color: #a0a0a0;
+  }
+  
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .tag {
+    background-color: #333;
+    color: #ccc;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
