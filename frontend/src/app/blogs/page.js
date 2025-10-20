@@ -1,46 +1,52 @@
-export const dynamic = 'force-dynamic';
 import Link from 'next/link';
-import api from '../../lib/api';
+import Image from 'next/image';
+import api from 'lib/api';
 import styles from './blogs.module.css';
+import SortToggle from 'components/SortToggle';
 
-// Function to fetch blogs from the API
-async function getBlogs() {
+export const dynamic = 'force-dynamic';
+
+async function getBlogs(sort = 'latest') {
   try {
-    const res = await api.get('/api/blogs');
+    const res = await api.get(`/api/blogs?sort=${sort}`);
     return res.data;
-  } catch (error) {
-    console.error('Failed to fetch blogs:', error);
-    return []; // Return an empty array on error
-  }
+  } catch (error) { return []; }
 }
 
-export default async function BlogsPage() {
-  const blogs = await getBlogs();
+export default async function BlogsPage({ searchParams }) {
+  // --- THIS IS THE FIX ---
+  const blogs = await getBlogs(searchParams.sort || 'latest');
+  // -----------------------
 
   return (
     <div>
-      <h1 className={styles.title}>All Blog Posts</h1>
-      <div className={styles.blogList}>
-        {blogs.length > 0 ? (
-          blogs.map((blog) => (
-            <Link href={`/blogs/${blog._id}`} key={blog._id} className={styles.card}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>All Blog Posts</h1>
+      </div>
+      <SortToggle />
+      
+      <div className={styles.contentGrid}>
+        {blogs.map((blog) => (
+          <Link href={`/blogs/${blog._id}`} key={blog._id} className={styles.card}>
+            <div className={styles.cardImage}>
+              {blog.thumbnailUrl && (
+                <Image src={blog.thumbnailUrl} alt={blog.title} fill style={{ objectFit: 'cover' }} />
+              )}
+            </div>
+            <div className={styles.cardContent}>
               <h2 className={styles.cardTitle}>{blog.title}</h2>
               <p className={styles.cardMeta}>
-                By {blog.author.username} on {new Date(blog.createdAt).toLocaleDateString()}
+                {new Date(blog.createdAt).toLocaleDateString()}
               </p>
               <div className={styles.cardFooter}>
                 <span className={styles.views}>{blog.views} views</span>
                 <div className={styles.tags}>
-                  {blog.tags.map((tag) => (
-                    <span key={tag} className={styles.tag}>{tag}</span>
-                  ))}
+                  {blog.tags?.slice(0, 2).map((tag) => <span key={tag} className={styles.tag}>{tag}</span>)}
                 </div>
               </div>
-            </Link>
-          ))
-        ) : (
-          <p>No blog posts found. The admin should create one!</p>
-        )}
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

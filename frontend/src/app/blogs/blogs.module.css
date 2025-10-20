@@ -1,63 +1,107 @@
+/* --- THIS IS THE FIX --- */
+.header {
+  display: flex; /* Re-add flexbox to align items horizontally */
+  justify-content: space-between; /* Pushes title and toggle to opposite ends */
+  align-items: center; /* Vertically aligns them in the middle */
+  margin-top: 3rem;
+  margin-bottom: 1.6rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+/* ----------------------- */
+
 .title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid #333;
-    padding-bottom: 1rem;
+  font-size: 2.2rem;
+  transition: color 0.3s ease;
+  /* Remove layout properties as they are now handled by the parent flex container */
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+.title:hover {
+  color: var(--accent-blue);
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-top: 2.5rem; /* Add a bit more space below the header line */
+}
+
+@media (min-width: 768px) {
+  .contentGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .blogList {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+}
+@media (min-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: repeat(3, 1fr);
   }
-  
-  .card {
-    display: block;
-    background-color: #1c1c1c;
-    padding: 1.5rem;
-    border-radius: 8px;
-    text-decoration: none;
-    color: inherit;
-    border: 1px solid #333;
-    transition: border-color 0.2s ease-in-out, transform 0.2s ease-in-out;
-  }
-  
-  .card:hover {
-    border-color: #555;
-    transform: translateY(-3px);
-  }
-  
-  .cardTitle {
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
-    color: #e0e0e0;
-  }
-  
-  .cardMeta {
-    font-size: 0.9rem;
-    color: #a0a0a0;
-    margin-bottom: 1rem;
-  }
-  
-  .cardFooter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-  }
-  
-  .views {
-      color: #a0a0a0;
-  }
-  
-  .tags {
-    display: flex;
-    gap: 0.5rem;
-  }
-  
-  .tag {
-    background-color: #333;
-    color: #ccc;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-8px);
+}
+.cardImage {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover .cardImage {
+  border-color: var(--accent-blue);
+  box-shadow: 0 10px 30px var(--accent-blue-glow);
+}
+.cardContent {
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.cardMeta {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+.cardFooter {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+}
+.views {
+  color: var(--text-secondary);
+}
+.tags {
+  display: flex;
+  gap: 0.5rem;
+}
+.tag {
+  background-color: var(--background-light);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}

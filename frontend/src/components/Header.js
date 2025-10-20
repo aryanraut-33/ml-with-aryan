@@ -1,20 +1,22 @@
 import Link from 'next/link';
 import styles from './Header.module.css';
 
-const Header = () => {
+// Accept the isVisible prop
+const Header = ({ isVisible }) => {
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
+    // Conditionally apply the 'hidden' class
+    <div className={`${styles.headerContainer} ${!isVisible ? styles.hidden : ''}`}>
+      <header className={styles.header}>
         <Link href="/" className={styles.logo}>
-          abc.com
+          ML with Aryan {/* <-- LOGO TEXT FIX */}
         </Link>
         <nav className={styles.nav}>
           <Link href="/blogs">Blogs</Link>
           <Link href="/videos">Videos</Link>
-          <Link href="/login">Admin</Link>
+          <Link href="/login" className={styles.adminLink}>Vault</Link>
         </nav>
-      </div>
-    </header>
+      </header>
+    </div>
   );
 };
 

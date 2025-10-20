@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import api from '../../../lib/api';
+import api from 'lib/api';
 import styles from './manage.module.css';
 
 export default function ManageBlogs() {
@@ -28,10 +28,8 @@ export default function ManageBlogs() {
     if (window.confirm('Are you sure you want to delete this blog post?')) {
       try {
         await api.delete(`/api/blogs/${id}`);
-        // Refetch blogs after deleting one
         fetchBlogs();
       } catch (error) {
-        console.error('Failed to delete blog', error);
         alert('Error deleting blog post.');
       }
     }

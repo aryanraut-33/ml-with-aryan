@@ -1,45 +1,85 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-  .addButton {
-    background-color: #0070f3;
-    color: white;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    border-radius: 4px;
-  }
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .table th,
-  .table td {
-    border: 1px solid #333;
-    padding: 0.75rem;
-    text-align: left;
-  }
-  .table th {
-    background-color: #2a2a2a;
-  }
-  .actions {
-    display: flex;
-    gap: 0.5rem;
-  }
-  .editButton, .deleteButton {
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-    color: white;
-    font-size: 0.9rem;
-  }
-  .editButton {
-    background-color: #555;
-  }
-  .deleteButton {
-    background-color: #8b0000;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  margin-top: 4rem;
+}
+
+.header h1 {
+  font-size: 2.5rem; /* Match Dashboard title */
+  font-weight: 600;
+}
+
+.addButton {
+  background-color: var(--accent-blue);
+  color: var(--background-dark);
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.addButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--accent-blue-glow);
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate; /* Use separate for rounded corners */
+  border-spacing: 0;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden; /* Important for border-radius */
+}
+
+.table th,
+.table td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table th {
+  background-color: var(--background-light);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.table tr:last-child td {
+  border-bottom: none; /* Remove border from last row */
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.editButton, .deleteButton {
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.editButton {
+  background-color: #333;
+  color: var(--text-primary);
+}
+.editButton:hover {
+  border-color: var(--text-primary);
+}
+
+.deleteButton {
+  background-color: transparent;
+  color: #ff4d4d;
+  border-color: #ff4d4d;
+}
+.deleteButton:hover {
+  background-color: rgba(255, 77, 77, 0.1);
+}

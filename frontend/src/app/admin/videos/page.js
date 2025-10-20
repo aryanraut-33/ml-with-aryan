@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import api from '../../../lib/api';
-import styles from '../blogs/manage.module.css'; // Reusing blog management styles
+import api from 'lib/api';
+import styles from 'app/admin/blogs/manage.module.css'; // <-- FIX: Absolute path
 
 export default function ManageVideos() {
   const [videos, setVideos] = useState([]);
@@ -28,9 +28,8 @@ export default function ManageVideos() {
     if (window.confirm('Are you sure you want to delete this video entry?')) {
       try {
         await api.delete(`/api/videos/${id}`);
-        fetchVideos(); // Refresh the list
+        fetchVideos();
       } catch (error) {
-        console.error('Failed to delete video', error);
         alert('Error deleting video entry.');
       }
     }

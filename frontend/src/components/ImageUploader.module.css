@@ -1,0 +1,80 @@
+.uploaderContainer {
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .input {
+    font-family: inherit;
+  }
+  /* Style the file input button */
+  .input::file-selector-button {
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .input::file-selector-button:hover {
+    background-color: #444;
+  }
+  .button {
+    background-color: var(--accent-blue);
+    color: var(--background-dark);
+    font-family: inherit;
+    font-weight: 600;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .result {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+  }
+  .urlContainer {
+    display: flex;
+    margin-top: 0.5rem;
+  }
+  .urlInput {
+    flex-grow: 1;
+    background-color: #0A0A0A;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.5rem;
+    border-radius: 4px 0 0 4px;
+    font-family: inherit;
+  }
+  .copyButton {
+    background-color: #333;
+    border: 1px solid var(--border-color);
+    border-left: none;
+    color: var(--text-primary);
+    padding: 0 1rem;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+  }
+  .instruction {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.75rem;
+  }

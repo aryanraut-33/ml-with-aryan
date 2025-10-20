@@ -31,3 +31,11 @@
     cursor: pointer;
     margin-top: 1rem;
   }
+
+  .preview {
+    margin-top: 1rem;
+    border: 1px solid var(--border-color);
+    display: inline-block;
+    border-radius: 8px;
+    overflow: hidden;
+}

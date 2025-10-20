@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from 'context/AuthContext';
 import styles from './login.module.css';
+import { FiLogIn } from 'react-icons/fi';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
@@ -23,26 +24,35 @@ export default function LoginPage() {
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.form}>
-        <h1 className={styles.title}>Admin Login</h1>
+        <h1 className={styles.title}>Vault Access</h1>
         {error && <p className={styles.error}>{error}</p>}
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          className={styles.input}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          className={styles.input}
-        />
+        <div className={styles.inputGroup}>
+          <label htmlFor="batchNo">Batch No.</label>
+          <input
+            id="batchNo"
+            type="text"
+            placeholder="Enter your Batch No."
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            className={styles.input}
+          />
+        </div>
+        <div className={styles.inputGroup}>
+          <label htmlFor="key">Key</label>
+          <input
+            id="key"
+            type="password"
+            placeholder="Enter your Key"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            className={styles.input}
+          />
+        </div>
         <button type="submit" className={styles.button}>
-          Login
+          <span>Authenticate</span>
+          <FiLogIn />
         </button>
       </form>
     </div>

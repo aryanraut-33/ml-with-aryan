@@ -1,37 +1,68 @@
+.headerContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  position: fixed; /* Keep it fixed so it can fade in/out on top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth slide transition */
+}
+
+.headerContainer.hidden {
+  top: -100px;
+}
+
 .header {
-    width: 100%;
-    background-color: #1a1a1a;
-    border-bottom: 1px solid #333;
-    padding: 1rem 2rem;
-  }
+  width: 65%;
+  max-width: 600px;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px; /* Pill shape */
   
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: #e0e0e0;
-  }
-  
-  .nav {
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  .nav a {
-    text-decoration: none;
-    color: #a0a0a0;
-    font-size: 1rem;
-    transition: color 0.2s ease-in-out;
-  }
-  
-  .nav a:hover {
-    color: #ffffff;
-  }
+  /* Glassmorphism Effect */
+  background: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  transition: all 0.3s ease;
+}
+
+.header:hover {
+  box-shadow: 0 0 20px var(--accent-blue-glow);
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav a {
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav a:hover {
+  color: var(--text-primary);
+}
+
+.adminLink {
+  background: var(--background-light);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+}

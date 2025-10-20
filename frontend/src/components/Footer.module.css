@@ -1,34 +1,35 @@
 .footer {
-    background-color: #1a1a1a;
-    border-top: 1px solid #333;
-    padding: 3rem 2rem;
-    margin-top: 4rem;
-  }
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .title {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-  .links a {
-    color: #a0a0a0;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.2s;
-  }
-  .links a:hover {
-    color: #fff;
-  }
-  .copyright {
-    font-size: 0.9rem;
-    color: #777;
-  }
+  background-color: transparent; /* Make it blend with the background */
+  border-top: 1px solid var(--border-color);
+  padding: 4rem 2rem;
+  margin-top: 4rem;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem; /* Increased gap */
+  margin-bottom: 3rem;
+}
+.links a {
+  color: var(--text-secondary);
+  font-size: 1.75rem; /* Larger icons */
+  transition: all 0.3s ease;
+}
+.links a:hover {
+  color: var(--accent-blue);
+  transform: scale(1.2);
+}
+.copyright {
+  font-size: 0.9rem;
+  color: #777;
+}

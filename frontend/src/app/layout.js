@@ -1,20 +1,16 @@
-'use client'; 
-import Header from '../components/Header';
-import Footer from '../components/Footer'; // Import Footer
-import { AuthProvider } from '../context/AuthContext';
-import './globals.css';
+import ClientLayout from 'components/ClientLayout';
+import 'app/globals.css';
+
+export const metadata = {
+  title: 'ML with Aryan',
+  description: 'Exploring the Frontiers of Machine Learning.',
+};
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>
-        <AuthProvider>
-          <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Header />
-            <main style={{ flex: 1 }}>{children}</main>
-            <Footer />
-          </div>
-        </AuthProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body suppressHydrationWarning>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

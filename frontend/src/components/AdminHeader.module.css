@@ -1,0 +1,117 @@
+.adminHeader {
+    position: fixed;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 1200px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    background: rgba(17, 17, 17, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+/* Main container for the admin interface */
+.adminContainer {
+    font-family: 'Inter', sans-serif; /* Override monospace for admin readability */
+    padding-top: 100px; /* Offset for the fixed header */
+  }
+  
+  /* Styles for the loading state */
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  
+  /* Wrapper for the login page content */
+  .loginMain {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  
+  .headerSection {
+    flex: 1;
+    display: flex;
+  }
+  /* Right-align the logout button */
+  .headerSection:last-child {
+    justify-content: flex-end;
+  }
+  
+  /* Main navigation links */
+  .adminNav {
+    display: flex;
+    gap: 0.5rem;
+    background-color: var(--background-dark);
+    border-radius: 8px;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+  }
+  
+  .adminNav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .adminNav a:hover {
+    background-color: var(--background-light);
+    color: var(--text-primary);
+  }
+  
+  /* Style for the currently active page link */
+  .adminNav a.active {
+    background-color: var(--accent-blue);
+    color: var(--background-dark);
+    box-shadow: 0 0 15px var(--accent-blue-glow);
+  }
+  
+  /* View Site and Logout Buttons */
+  .viewSiteButton, .logoutButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .viewSiteButton:hover {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+  }
+  
+  .logoutButton {
+    border-color: #ff4d4d;
+    color: #ff4d4d;
+  }
+  
+  .logoutButton:hover {
+    background-color: rgba(255, 77, 77, 0.1);
+  }
+  
+  /* Main content area below the header */
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }

@@ -1,0 +1,77 @@
+.card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px var(--accent-blue-glow);
+  border-color: var(--accent-blue);
+}
+
+.imageContainer {
+  position: relative;
+  /* --- FIX: Reduced min-height by ~25% --- */
+  min-height: 260px; 
+}
+
+.content {
+  /* --- FIX: Reduced padding --- */
+  padding: 1.5rem;
+  background-color: var(--background-light);
+  display: flex;
+  flex-direction: column;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem; /* Reduced margin */
+}
+.tags { display: flex; gap: 0.5rem; }
+.tag { font-size: 0.75rem; background-color: #222; padding: 0.25rem 0.5rem; border-radius: 4px; }
+.date { font-size: 0.75rem; color: var(--text-secondary); }
+
+.title {
+  /* --- FIX: Reduced font-size --- */
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.description {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  /* --- FIX: Reduced font-size --- */
+  font-size: 0.9rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.authorInfo { display: flex; align-items: center; gap: 0.75rem; }
+.authorText { display: flex; flex-direction: column; }
+.authorName { font-size: 0.8rem; font-weight: 500; color: var(--text-primary); }
+.date { font-size: 0.75rem; color: var(--text-secondary); }
+.readMore {
+  color: var(--accent-blue);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.9rem; /* Reduced size */
+}

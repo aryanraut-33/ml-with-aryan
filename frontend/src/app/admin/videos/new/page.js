@@ -1,8 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import VideoForm from '../../../../components/VideoForm';
-import api from '../../../../lib/api';
+import VideoForm from 'components/VideoForm';
+import api from 'lib/api';
 
 export default function NewVideoPage() {
   const router = useRouter();

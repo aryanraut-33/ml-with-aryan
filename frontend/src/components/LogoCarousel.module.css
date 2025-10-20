@@ -1,0 +1,41 @@
+.marquee_container {
+    width: 100%;
+    padding: 2rem 0;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  }
+  
+  .logo_slide {
+    margin: 0 2.5rem;
+  }
+  
+  .logo_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    opacity: 0.6;
+    filter: grayscale(100%);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  /* --- THIS IS THE FIX --- */
+  .logo_slide:hover .logo_wrapper {
+    filter: grayscale(0%);
+    opacity: 1;
+    /* Change the color to the site's accent blue instead of white */
+    color: var(--accent-blue); 
+    transform: scale(1.1);
+    /* The box-shadow, padding, and border-radius for the glow have been removed */
+  }
+  /* ----------------------- */
+  
+  .logo_name {
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+  
+  .logo_icon {
+    color: inherit;
+  }

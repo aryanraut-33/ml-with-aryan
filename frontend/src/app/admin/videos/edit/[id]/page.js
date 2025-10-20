@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
-import VideoForm from '../../../../../components/VideoForm';
-import api from '../../../../../lib/api';
+import VideoForm from 'components/VideoForm';
+import api from 'lib/api';
 
 export default function EditVideoPage() {
   const router = useRouter();

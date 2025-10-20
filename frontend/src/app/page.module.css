@@ -1,19 +1,45 @@
+/* This is the main content area with a max-width */
+.centeredContent {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* This container breaks out of the max-width for the carousel */
+.fullWidthContainer {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  
+  /* --- FIX: Removed top margin --- */
+  margin-top: 0;
+}
+
 .hero {
   text-align: center;
-  padding: 4rem 1rem;
-  margin-bottom: 3rem;
+  /* --- FIX: Reduced bottom padding --- */
+  padding: 6rem 1rem 3rem; 
+  margin-bottom: 0;
 }
 
 .heroTitle {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: 3.5rem;
+  font-weight: 800;
   line-height: 1.2;
   margin-bottom: 1rem;
+  letter-spacing: -2px;
+}
+
+.heroAccent {
+  color: var(--accent-blue);
 }
 
 .heroSubtitle {
   font-size: 1.2rem;
-  color: #a0a0a0;
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -22,6 +48,16 @@
   font-size: 2rem;
   margin-top: 4rem;
   margin-bottom: 2rem;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 1rem;
+}
+
+.featuredContainer {
+  margin-bottom: 3rem;
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
 }

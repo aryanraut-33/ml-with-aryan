@@ -1,0 +1,45 @@
+.toggleHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+  }
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  .toggleButtons {
+    display: flex;
+    gap: 0.5rem;
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem;
+    border-radius: 9999px;
+  }
+  .toggleButtons button {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+  }
+  .toggleButtons button.active {
+    background-color: var(--accent-blue);
+    color: var(--background-dark);
+    box-shadow: 0 0 15px var(--accent-blue-glow);
+  }
+  .featuredContainer {
+    margin-bottom: 3rem;
+  }
+  
+  .gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+  }
