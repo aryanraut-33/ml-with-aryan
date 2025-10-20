@@ -46,3 +46,48 @@
 .statCard:hover { transform: translateY(-5px); border-color: var(--accent-blue); box-shadow: 0 10px 30px var(--accent-blue-glow); }
 .statTitle { display: flex; align-items: center; gap: 0.75rem; font-size: 1rem; color: var(--text-secondary); font-weight: 500; margin-bottom: 0.5rem; }
 .statValue { font-size: 3rem; font-weight: 700; color: var(--text-primary); line-height: 1.2; }
+
+/* --- RESPONSIVE STYLES FOR ADMIN --- */
+
+.mobileMenuButton {
+  display: none; /* Hidden by default */
+  background: var(--background-light);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.6rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.mobileAdminNav {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: var(--background-light);
+  padding: 1rem;
+  margin: 0 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+.mobileAdminNav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 0.75rem;
+  border-radius: 6px;
+}
+.mobileAdminNav a:hover {
+  background-color: #222;
+}
+
+@media (max-width: 1024px) {
+  .adminNav {
+    display: none; /* Hide the desktop nav */
+  }
+  .mobileMenuButton, .mobileAdminNav {
+    display: flex; /* Show the mobile elements */
+  }
+  .dashboardLayout {
+    grid-template-columns: 1fr; /* Stack dashboard columns */
+  }
+}

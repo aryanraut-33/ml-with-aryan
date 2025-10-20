@@ -115,3 +115,66 @@
     margin: 0 auto;
     padding: 2rem;
   }
+
+  .mobileMenuButton {
+    display: none; /* Hidden on desktop */
+    background: var(--background-light);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.6rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 1rem;
+  }
+  
+  .mobileAdminNavWrapper {
+    position: fixed;
+    top: 90px; /* Position below the header */
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: 0 1rem;
+    
+    /* Hide and disable by default */
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .mobileAdminNavWrapper.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
+  .mobileAdminNav {
+    display: flex; /* This will be shown on mobile */
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: var(--background-light);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  .mobileAdminNav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+  }
+  .mobileAdminNav a:hover {
+    background-color: #222;
+    color: var(--text-primary);
+  }
+  
+  /* Media query to switch between desktop and mobile nav */
+  @media (max-width: 1024px) {
+    .adminNav {
+      display: none; /* Hide the desktop nav */
+    }
+    .mobileMenuButton {
+      display: block; /* Show the mobile menu button */
+    }
+  }

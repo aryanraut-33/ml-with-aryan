@@ -64,3 +64,13 @@
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
 }
+
+@media (max-width: 768px) {
+  .video {
+    margin-top: 2rem;
+  }
+
+  .title {
+    font-size: 2rem; /* Reduce title size on mobile */
+  }
+}

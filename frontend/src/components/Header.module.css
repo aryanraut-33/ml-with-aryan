@@ -66,3 +66,59 @@
   border-radius: 9999px;
   border: 1px solid var(--border-color);
 }
+
+/* Mobile-only elements */
+.mobileMenuButton {
+  display: none; /* Hidden by default */
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  z-index: 1001; /* Ensure it's on top */
+}
+
+.mobileNav {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.mobileNav.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobileNav a {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Media Query for mobile screens */
+@media (max-width: 768px) {
+  .nav {
+    display: none; /* Hide desktop nav */
+  }
+  .mobileMenuButton, .mobileNav {
+    display: flex; /* Show mobile elements */
+  }
+}

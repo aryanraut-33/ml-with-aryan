@@ -45,6 +45,7 @@ export default function ManageVideos() {
           Add New Video
         </Link>
       </div>
+      <div style={{ overflowX: 'auto', paddingBottom: '1rem' }}></div>
       <table className={styles.table}>
         <thead>
           <tr>

@@ -43,3 +43,15 @@
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 2rem;
   }
+
+  @media (max-width: 768px) {
+    .toggleHeader {
+      flex-direction: column; /* Stack title and buttons */
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  
+    .sectionTitle {
+      font-size: 1.5rem;
+    }
+  }

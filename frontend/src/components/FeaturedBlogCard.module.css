@@ -75,3 +75,17 @@
   gap: 0.25rem;
   font-size: 0.9rem; /* Reduced size */
 }
+
+@media (max-width: 768px) {
+  .card {
+    grid-template-columns: 1fr; /* Stack image on top of content */
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+}
