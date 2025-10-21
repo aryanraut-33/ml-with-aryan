@@ -1,11 +1,9 @@
-/* This is the main content area with a max-width */
 .centeredContent {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
-/* This container breaks out of the max-width for the carousel */
 .fullWidthContainer {
   width: 100vw;
   position: relative;
@@ -13,15 +11,12 @@
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  
-  /* --- FIX: Removed top margin --- */
   margin-top: 0;
 }
 
 .hero {
   text-align: center;
-  /* --- FIX: Reduced bottom padding --- */
-  padding: 6rem 1rem 3rem; 
+  padding: 6rem 1rem 4rem; 
   margin-bottom: 0;
 }
 
@@ -58,6 +53,18 @@
 
 .gridContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2.5rem;
 }
+
+/* --- THIS IS THE FIX --- */
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2.75rem; /* Smaller font size on mobile */
+    letter-spacing: -1.5px; /* Adjust letter spacing for smaller size */
+  }
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+}
+/* ----------------------- */

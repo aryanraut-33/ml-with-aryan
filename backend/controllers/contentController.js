@@ -10,13 +10,13 @@ const getLatestContent = async (req, res) => {
     // Fetch the 3 most recent blogs
     const latestBlogs = await Blog.find({})
       .sort({ createdAt: -1 })
-      .limit(3)
+      .limit(4)
       .populate('author', 'username');
 
     // Fetch the 3 most recent videos
     const latestVideos = await Video.find({})
       .sort({ createdAt: -1 })
-      .limit(3)
+      .limit(4)
       .populate('author', 'username');
     
     // Helper to attach view counts

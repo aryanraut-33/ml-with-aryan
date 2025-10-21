@@ -1,0 +1,20 @@
+/* This file is specifically for the video section layout */
+
+.featuredContainer {
+    margin-bottom: 3rem;
+  }
+  
+  .gridContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 768px) {
+    .gridContainer {
+      max-width: 100%;
+      gap: 1.5rem;
+    }
+  }

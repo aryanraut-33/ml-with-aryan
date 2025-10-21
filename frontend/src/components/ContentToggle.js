@@ -6,7 +6,7 @@ import styles from './ContentToggle.module.css';
 // Import all the necessary card components
 import FeaturedBlogCard from './FeaturedBlogCard';
 import BlogCard from './BlogCard';
-import FeaturedVideoCard from './FeaturedVideoCard'; // <-- IMPORT NEW COMPONENT
+import FeaturedVideoCard from './FeaturedVideoCard';
 import VideoGridCard from './VideoGridCard';
 
 export default function ContentToggle({ blogs, videos }) {
@@ -55,8 +55,8 @@ export default function ContentToggle({ blogs, videos }) {
         </div>
       )}
 
-      {/* --- THIS IS THE FIX --- */}
-      {/* Implemented the new "featured + grid" layout for videos */}
+      {/* --- THIS IS THE DEFINITIVE FIX --- */}
+      {/* The videos tab now uses the EXACT SAME JSX structure as the blogs tab. */}
       {activeTab === 'videos' && (
         <div>
           {latestVideo && (
@@ -73,7 +73,7 @@ export default function ContentToggle({ blogs, videos }) {
           )}
         </div>
       )}
-      {/* ----------------------- */}
+      {/* ------------------------------------ */}
     </section>
   );
 }

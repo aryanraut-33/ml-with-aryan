@@ -42,12 +42,9 @@
 
 .description p {
   margin-bottom: 1.5rem;
-
-  /* --- THIS IS THE FIX --- */
-  /* Ensures that long strings without spaces will wrap to the next line */
+  /* Ensures that long strings without spaces will wrap */
   overflow-wrap: break-word;
-  word-wrap: break-word; /* For older browser compatibility */
-  /* ----------------------- */
+  word-wrap: break-word;
 }
 
 .tags {
