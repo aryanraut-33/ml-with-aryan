@@ -8,7 +8,7 @@ const socialLinks = {
   linkedin: 'https://www.linkedin.com/in/aryan-raut/',
   github: 'https://github.com/aryanraut-33',
   linktree: 'https://linktr.ee/aryan.raut',
-  whatsapp: 'https://wa.me/9004136721'
+  whatsapp: 'https://wa.me/+919004136721'
 };
 
 export default function Footer() {
