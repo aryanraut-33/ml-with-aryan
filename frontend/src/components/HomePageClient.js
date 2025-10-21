@@ -12,7 +12,7 @@ export default function HomePageClient({ blogs, videos }) {
           Exploring the Frontiers of <span className={styles.heroAccent}>Machine Learning</span>
         </h1>
         <p className={styles.heroSubtitle}>
-          Sharing my learnings and musings in this ever-expanding world of AI, ML, DL, MLOPS and everything in between.
+          Sharing my learnings and ideas in domain of AI, ML, DL, MLOPS and everything in between.
         </p>
       </section>
 

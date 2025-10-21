@@ -8,7 +8,7 @@ import AdminHeader from './AdminHeader'; // Admin Header
 import Footer from './Footer';
 import MouseAura from './MouseAura';
 import { useState, useEffect } from 'react';
-import styles from 'app/admin/admin.module.css'; // We can use this for some shared styles
+import styles from './ClientLayout.module.css';// We can use this for some shared styles
 
 // Inner component to access hooks
 function LayoutManager({ children }) {

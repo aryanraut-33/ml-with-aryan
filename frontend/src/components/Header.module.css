@@ -116,9 +116,17 @@
 /* Media Query for mobile screens */
 @media (max-width: 768px) {
   .nav {
-    display: none; /* Hide desktop nav */
+    display: none;
   }
   .mobileMenuButton, .mobileNav {
-    display: flex; /* Show mobile elements */
+    display: flex;
+  }
+  
+  /* New rules for the mobile header layout */
+  .header {
+    width: auto; /* Allow the header to shrink to its content size */
+    justify-content: flex-start; /* Align items to the start */
+    gap: 7.5rem; /* Create a controlled gap between the logo and menu icon */
+    padding: 0.75rem 1.5rem; /* Adjust padding for a more compact feel */
   }
 }

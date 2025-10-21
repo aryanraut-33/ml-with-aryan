@@ -60,11 +60,16 @@
 /* --- THIS IS THE FIX --- */
 @media (max-width: 768px) {
   .heroTitle {
-    font-size: 2.75rem; /* Smaller font size on mobile */
-    letter-spacing: -1.5px; /* Adjust letter spacing for smaller size */
+    /* Reduced font size for better mobile readability */
+    font-size: 2.5rem; 
+    letter-spacing: -1.5px;
   }
   .heroSubtitle {
     font-size: 1rem;
+  }
+  .hero {
+    padding-top: 3rem;
+    padding-bottom: 1.5rem;
   }
 }
 /* ----------------------- */

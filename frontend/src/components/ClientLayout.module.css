@@ -1,0 +1,21 @@
+.mainContent {
+    flex: 1; /* Ensures the main content area fills the available space */
+  }
+  
+  /* Default (desktop) padding for the public site */
+  .publicLayout {
+    padding-top: 80px;
+  }
+  
+  /* Default (desktop) padding for the admin section */
+  .adminLayout {
+    padding-top: 120px;
+  }
+  
+  /* --- THIS IS THE FIX for space above hero --- */
+  /* On mobile screens, reduce the padding for the public layout */
+  @media (max-width: 768px) {
+    .publicLayout {
+      padding-top: 60px;
+    }
+  }
