@@ -1,5 +1,5 @@
 import api from 'lib/api';
-import HomePageClient from 'components/HomePageClient';
+import HomePageClient from 'components/HomePageClient'; //comment ffs
 
 export const dynamic = 'force-dynamic';
 
