@@ -3,7 +3,7 @@
 > A minimal, performant, and visually sophisticated full-stack platform for publishing and managing Machine Learning blogs and video content.
 
 ![ML with Aryan Homepage](https://i.imgur.com/your-screenshot-url.png) 
-*(**Note:** You will need to take a screenshot of your live homepage, upload it to a service like Imgur, and replace the URL above.)*
+
 
 ## About The Project
 
