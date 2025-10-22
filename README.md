@@ -113,18 +113,21 @@ You will need the following software installed on your machine:
 
 To run this project, you will need to add the following environment variables to your `.env` and `.env.local` files.
 
-## Backend (`backend/.env`)
+### Backend (`backend/.env`)
 
-```env
+```sh
 MONGO_URI
 JWT_SECRET
 CLOUDINARY_CLOUD_NAME
 CLOUDINARY_API_KEY
 CLOUDINARY_API_SECRET
+```
 
 # Frontend (`frontend/.env.local`)
 
+```sh
 NEXT_PUBLIC_API_URL
+```
 
 ## Deployment
 
