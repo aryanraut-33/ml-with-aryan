@@ -113,7 +113,7 @@ You will need the following software installed on your machine:
 
 To run this project, you will need to add the following environment variables to your `.env` and `.env.local` files.
 
-#### Backend (`backend/.env`)
+## Backend (`backend/.env`)
 
 ```env
 MONGO_URI
