@@ -2,7 +2,7 @@
 
 > A minimal, performant, and visually sophisticated full-stack platform for publishing and managing Machine Learning blogs and video content.
 
-![ML with Aryan Homepage](https://i.imgur.com/your-screenshot-url.png) 
+![ML with Aryan Homepage](https://res.cloudinary.com/dxghlnzxg/image/upload/v1761121043/Screenshot_2025-10-22_at_1.45.54_PM_t7qbe7.png) 
 
 
 ## About The Project
