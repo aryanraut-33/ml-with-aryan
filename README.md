@@ -133,9 +133,9 @@ NEXT_PUBLIC_API_URL
 
 This project is designed for separate deployments on Vercel and Render from a single monorepo.
 
-- **Render (Backend):**
+- **Render (Backend)**
 
-- **Vercel (Frontend):**
+- **Vercel (Frontend)**
 
 ---
 
