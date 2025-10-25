@@ -1,10 +1,7 @@
 /* --- THIS IS THE FIX --- */
 .header {
-  display: flex; /* Re-add flexbox to align items horizontally */
-  justify-content: space-between; /* Pushes title and toggle to opposite ends */
-  align-items: center; /* Vertically aligns them in the middle */
   margin-top: 3rem;
-  margin-bottom: 1.6rem;
+  margin-bottom: -1.5rem;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 1rem;
 }
@@ -51,7 +48,7 @@
   transform: translateY(-8px);
 }
 .cardImage {
-  position: relative;
+  position: relative; /* Anchor for the overlay */
   width: 100%;
   padding-top: 56.25%;
   border-radius: 12px;
@@ -64,6 +61,25 @@
   border-color: var(--accent-blue);
   box-shadow: 0 10px 30px var(--accent-blue-glow);
 }
+
+/* --- THIS IS THE FIX (Issue C) --- */
+.interactionOverlay {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  gap: 0.75rem; /* Increased gap for easier tapping */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+/* Show on desktop when the PARENT CARD is hovered */
+.card:hover .interactionOverlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ---------------------------------- */
+
 .cardContent {
   padding: 0 0.5rem;
   display: flex;
@@ -89,6 +105,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 0.75rem;
+  position: relative; /* Anchor for new buttons */
 }
 .views {
   color: var(--text-secondary);
@@ -104,4 +121,37 @@
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
   font-size: 0.7rem;
+}
+
+/* --- THIS IS THE FIX (Issue B & C) --- */
+@media (max-width: 768px) {
+  /* Make overlay visible on mobile */
+  .interactionOverlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Reduce font sizes */
+  .title { font-size: 1.8rem; }
+  .cardTitle { font-size: 1rem; }
+  .cardMeta { font-size: 0.75rem; }
+  .cardFooter { font-size: 0.7rem; }
+  .tag { font-size: 0.65rem; }
+}
+/* ------------------------------------ */
+
+.interactionButtons {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  gap: 0.75rem; 
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-secondary);
 }

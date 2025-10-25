@@ -9,6 +9,10 @@ const blogRoutes = require('./routes/blogRoutes');
 const videoRoutes = require('./routes/videoRoutes');
 const contentRoutes = require('./routes/contentRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
+const interactionRoutes = require('./routes/interactionRoutes'); 
+const adminRoutes = require('./routes/adminRoutes');
+
+
 
 // Connect to database
 connectDB();
@@ -35,6 +39,8 @@ app.use('/api/blogs', blogRoutes);
 app.use('/api/videos', videoRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/upload', uploadRoutes); 
+app.use('/api/interactions', interactionRoutes); 
+app.use('/api/admin', adminRoutes); 
 
 
 const PORT = process.env.PORT || 5001;

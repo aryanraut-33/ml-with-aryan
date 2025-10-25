@@ -1,42 +1,42 @@
+/* Minimalist, glassmorphic header — final refinement */
+
 .headerContainer {
   width: 100%;
   display: flex;
   justify-content: center;
   padding-top: 2rem;
-  position: fixed; /* Keep it fixed so it can fade in/out on top */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth slide transition */
+  transition: top 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .headerContainer.hidden {
   top: -100px;
 }
 
+/* --- Restored Glassmorphism Elegance --- */
 .header {
-  width: 65%;
-  max-width: 600px;
+  width: 70%;
+  max-width: 800px;
   padding: 0.75rem 2rem;
-  border-radius: 9999px; /* Pill shape */
-  
-  /* Glassmorphism Effect */
-  background: rgba(17, 17, 17, 0.6);
+  border-radius: 9999px;
+  background: rgba(17, 17, 17, 0.7);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
-
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   transition: all 0.3s ease;
 }
 
 .header:hover {
   box-shadow: 0 0 20px var(--accent-blue-glow);
 }
+/* -------------------------------------- */
 
 .logo {
   font-weight: 800;
@@ -67,34 +67,44 @@
   border: 1px solid var(--border-color);
 }
 
-/* Mobile-only elements */
+.logoutButton {
+  background: transparent;
+  border: 1px solid #ff4d4d;
+  color: #ff4d4d;
+  font-family: inherit;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logoutButton:hover {
+  background-color: rgba(255, 77, 77, 0.1);
+}
+
+/* --- Mobile Layout (Preserved & Perfected) --- */
 .mobileMenuButton {
-  display: none; /* Hidden by default */
+  display: none;
   background: transparent;
   border: none;
   color: var(--text-primary);
   cursor: pointer;
-  z-index: 1001; /* Ensure it's on top */
+  z-index: 1001;
 }
 
 .mobileNav {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: 999;
-  
   background: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-
+  gap: 1.5rem;
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -108,25 +118,40 @@
 }
 
 .mobileNav a {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-primary);
 }
 
-/* Media Query for mobile screens */
+.mobileLogoutButton {
+  background: transparent;
+  border: 1px solid #ff4d4d;
+  color: #ff4d4d;
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.2s ease;
+}
+
+.mobileLogoutButton:hover {
+  background-color: rgba(255, 77, 77, 0.1);
+}
+
 @media (max-width: 768px) {
   .nav {
-    display: none;
+      display: none;
   }
   .mobileMenuButton, .mobileNav {
-    display: flex;
+      display: flex;
   }
-  
-  /* New rules for the mobile header layout */
   .header {
-    width: auto; /* Allow the header to shrink to its content size */
-    justify-content: flex-start; /* Align items to the start */
-    gap: 7.5rem; /* Create a controlled gap between the logo and menu icon */
-    padding: 0.75rem 1.5rem; /* Adjust padding for a more compact feel */
+      width: auto;
+      justify-content: flex-start;
+      gap: 1.5rem;
+      padding: 0.75rem 1.5rem;
   }
 }

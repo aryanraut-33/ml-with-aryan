@@ -4,7 +4,7 @@
     
     /* --- THIS IS THE FIX --- */
     /* Position it correctly below the header line and before the content */
-    margin-top: -2.5rem; /* Pulls it up into the header's margin space */
+    margin-top: .5rem; /* Pulls it up into the header's margin space */
     margin-bottom: 2rem;
     position: relative; /* Ensure it sits on top of other elements if needed */
     z-index: 10;

@@ -1,39 +1,22 @@
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh; 
-
-}
+/* --- Login & Signup Shared Form Styles --- */
 
 .form {
   width: 100%;
   max-width: 420px;
-  padding: 2.5rem;
-  border-radius: 16px;
-  
-  /* New Glassmorphism & Glow Effect */
-  background: rgba(17, 17, 17, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 0 30px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-}
-
-.form:hover {
-  box-shadow: 0 0 40px var(--accent-blue-glow);
+  padding: 2rem;
 }
 
 .title {
   text-align: center;
-  margin-bottom: 2.5rem;
-  font-size: 2rem;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
   font-weight: 600;
+  letter-spacing: -1px;
 }
 
 .inputGroup {
-  margin-bottom: 1.5rem;
+  position: relative;
+  margin-bottom: 2rem;
 }
 
 .inputGroup label {
@@ -41,29 +24,30 @@
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
   color: var(--text-secondary);
+  font-weight: 500;
 }
 
 .input {
   width: 100%;
-  padding: 0.85rem 1rem;
-  background-color: var(--background-dark);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  padding: 0.5rem 0.2rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--border-color);
   color: var(--text-primary);
   font-family: inherit;
-  font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease;
 }
 
 .input:focus {
   outline: none;
   border-color: var(--accent-blue);
-  box-shadow: 0 0 15px var(--accent-blue-glow);
 }
 
 .button {
   width: 100%;
-  padding: 0.85rem 1rem;
+  margin-top: 2rem;
+  padding: 1rem;
   background-color: var(--accent-blue);
   border: none;
   border-radius: 8px;
@@ -79,9 +63,9 @@
   transition: all 0.2s ease-in-out;
 }
 
-.button:hover {
-  box-shadow: 0 0 20px var(--accent-blue-glow);
-  transform: translateY(-2px);
+.button:not(:disabled):hover {
+  box-shadow: 0 0 25px var(--accent-blue-glow);
+  transform: translateY(-3px);
 }
 
 .error {
@@ -92,4 +76,20 @@
   padding: 0.75rem;
   border-radius: 8px;
   border: 1px solid rgba(255, 77, 77, 0.3);
+}
+
+.footerText {
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--text-secondary);
+}
+
+.link {
+  color: var(--accent-blue);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
 }

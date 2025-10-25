@@ -1,107 +1,157 @@
 /* --- THIS IS THE FIX --- */
 .header {
-    display: flex; /* Re-add flexbox to align items horizontally */
-    justify-content: space-between; /* Pushes title and toggle to opposite ends */
-    align-items: center; /* Vertically aligns them in the middle */
-    margin-top: 3rem;
-    margin-bottom: 1.6rem;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 1rem;
-  }
-  /* ----------------------- */
-  
-  .title {
-    font-size: 2.2rem;
-    transition: color 0.3s ease;
-    /* Remove layout properties as they are now handled by the parent flex container */
-    margin: 0;
-    border: none;
-    padding: 0;
-  }
-  .title:hover {
-    color: var(--accent-blue);
-  }
-  
+  margin-top: 3rem;
+  margin-bottom: -1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+/* ----------------------- */
+
+.title {
+  font-size: 2.2rem;
+  transition: color 0.3s ease;
+  /* Remove layout properties as they are now handled by the parent flex container */
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+.title:hover {
+  color: var(--accent-blue);
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-top: 2.5rem; /* Add a bit more space below the header line */
+}
+
+@media (min-width: 768px) {
   .contentGrid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    margin-top: 2.5rem; /* Add a bit more space below the header line */
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  @media (min-width: 768px) {
-    .contentGrid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+}
+@media (min-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: repeat(3, 1fr);
   }
-  @media (min-width: 1024px) {
-    .contentGrid {
-      grid-template-columns: repeat(4, 1fr);
-    }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-8px);
+}
+.cardImage {
+  position: relative; /* Anchor for the overlay */
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover .cardImage {
+  border-color: var(--accent-blue);
+  box-shadow: 0 10px 30px var(--accent-blue-glow);
+}
+
+/* --- THIS IS THE FIX (Issue C) --- */
+.interactionOverlay {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  gap: 0.75rem; /* Increased gap for easier tapping */
+
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+/* Show on desktop when the PARENT CARD is hovered */
+.card:hover .interactionOverlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ---------------------------------- */
+
+.cardContent {
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+.cardMeta {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+.cardFooter {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  position: relative; /* Anchor for new buttons */
+}
+.views {
+  color: var(--text-secondary);
+}
+.tags {
+  display: flex;
+  gap: 0.5rem;
+}
+.tag {
+  background-color: var(--background-light);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+/* --- THIS IS THE FIX (Issue B & C) --- */
+@media (max-width: 768px) {
+  /* Make overlay visible on mobile */
+  .interactionOverlay {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .card {
-    display: flex;
-    flex-direction: column;
-    background-color: transparent;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
-  }
-  .card:hover {
-    transform: translateY(-8px);
-  }
-  .cardImage {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  }
-  .card:hover .cardImage {
-    border-color: var(--accent-blue);
-    box-shadow: 0 10px 30px var(--accent-blue-glow);
-  }
-  .cardContent {
-    padding: 0 0.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-  .cardTitle {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-  }
-  .cardMeta {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-  }
-  .cardFooter {
-    margin-top: auto;
-    padding-top: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.75rem;
-  }
-  .views {
-    color: var(--text-secondary);
-  }
-  .tags {
-    display: flex;
-    gap: 0.5rem;
-  }
-  .tag {
-    background-color: var(--background-light);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
-    font-size: 0.7rem;
-  }
+  /* Reduce font sizes */
+  .title { font-size: 1.8rem; }
+  .cardTitle { font-size: 1rem; }
+  .cardMeta { font-size: 0.75rem; }
+  .cardFooter { font-size: 0.7rem; }
+  .tag { font-size: 0.65rem; }
+}
+/* ------------------------------------ */
+
+.interactionButtons {
+  position: absolute;
+  right: 0;
+  bottom: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  background-color: var(--background-dark);
+  padding: 0.25rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}

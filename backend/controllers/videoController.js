@@ -10,19 +10,25 @@ const getVideos = async (req, res) => {
     const videos = await Video.aggregate([
       { $lookup: { from: 'viewcounts', localField: '_id', foreignField: 'contentId', as: 'viewInfo' } },
       { $lookup: { from: 'users', localField: 'author', foreignField: '_id', as: 'authorInfo' } },
+      { $lookup: { from: 'likes', localField: '_id', foreignField: 'contentId', as: 'likes' } },
+      { $lookup: { from: 'bookmarks', localField: '_id', foreignField: 'contentId', as: 'bookmarks' } },
       { $unwind: { path: '$viewInfo', preserveNullAndEmptyArrays: true } },
       { $unwind: { path: '$authorInfo', preserveNullAndEmptyArrays: true } },
-      { $addFields: { views: { $ifNull: ['$viewInfo.count', 0] } } },
+      { $addFields: {
+          views: { $ifNull: ['$viewInfo.count', 0] },
+          likeCount: { $size: '$likes' },
+          bookmarkCount: { $size: '$bookmarks' }
+      }},
       { $sort: { [sortBy]: -1 } },
       { $project: {
-          title: 1, description: 1, videoUrl: 1, tags: 1, createdAt: 1, views: 1,
+          title: 1, description: 1, videoUrl: 1, tags: 1, createdAt: 1, views: 1, authorName: 1,
+          likeCount: 1, bookmarkCount: 1,
           'author.username': '$authorInfo.username',
-          'author.id': '$authorInfo._id'
       }}
     ]);
     res.json(videos);
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching videos:", error);
     res.status(500).json({ message: 'Server Error' });
   }
 };

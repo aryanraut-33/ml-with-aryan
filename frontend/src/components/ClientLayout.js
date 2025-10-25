@@ -3,24 +3,27 @@
 import { AuthProvider, useAuth } from 'context/AuthContext';
 import { usePathname } from 'next/navigation';
 import Background from './Background';
-import Header from './Header'; // Public Header
-import AdminHeader from './AdminHeader'; // Admin Header
+import Header from './Header';
+import AdminHeader from './AdminHeader';
 import Footer from './Footer';
 import MouseAura from './MouseAura';
 import { useState, useEffect } from 'react';
-import styles from './ClientLayout.module.css';// We can use this for some shared styles
+import styles from './ClientLayout.module.css';
+import Link from 'next/link'; // ✅ Added
+import { FiHome } from 'react-icons/fi'; // ✅ Added
 
-// Inner component to access hooks
+// Inner component to access hooks, which must be inside a Provider
 function LayoutManager({ children }) {
   const pathname = usePathname();
   const { user, logout } = useAuth();
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [isAdminMenuOpen, setIsAdminMenuOpen] = useState(false); // New state for admin mobile menu
+  const [isAdminMenuOpen, setIsAdminMenuOpen] = useState(false);
 
+  // Determine the current route type
   const isAdminRoute = pathname.startsWith('/admin');
-  const isLoginPage = pathname === '/login';
+  const isAuthRoute = pathname === '/login' || pathname === '/signup';
 
-  // Effect for hiding public header on scroll
+  // Effect for hiding the public header on scroll
   useEffect(() => {
     let lastScrollY = window.scrollY;
     const handleScroll = () => {
@@ -31,48 +34,67 @@ function LayoutManager({ children }) {
       }
       lastScrollY = window.scrollY;
     };
-    // Only apply this effect to public pages
-    if (!isAdminRoute && !isLoginPage) {
+    // Only apply this scroll effect on public pages
+    if (!isAdminRoute && !isAuthRoute) {
       window.addEventListener('scroll', handleScroll, { passive: true });
     }
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [pathname, isAdminRoute, isLoginPage]);
+  }, [pathname, isAdminRoute, isAuthRoute]);
 
-  if (isLoginPage) {
-    return <main className={styles.loginMain}>{children}</main>;
+  // --- ✅ UPDATED AUTH PAGE LAYOUT ---
+  if (isAuthRoute) {
+    return (
+      <main className={styles.authContainer}>
+        {/* ✅ Subtle grid background */}
+        <div className={styles.authGrid}></div>
+
+        {/* ✅ "Back to Site" Home Button */}
+        <Link href="/" className={styles.homeLink}>
+          <span className={styles.homeLinkText}>Back to Site</span>
+          <FiHome />
+        </Link>
+
+        {children}
+      </main>
+    );
   }
+  // -----------------------------------
 
+  // Otherwise, render the standard site layout
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
       <MouseAura />
       <Background />
-      
+
       {isAdminRoute ? (
-        // Render Admin Header only if user is a logged-in admin
-        user && user.isAdmin && (
-          <AdminHeader 
-            onLogout={logout} 
+        user &&
+        user.isAdmin && (
+          <AdminHeader
+            onLogout={logout}
             isMenuOpen={isAdminMenuOpen}
-            setIsMenuOpen={setIsAdminMenuOpen} 
+            setIsMenuOpen={setIsAdminMenuOpen}
           />
         )
       ) : (
-        // Render Public Header for all other pages
         <Header isVisible={isHeaderVisible} />
       )}
-      
-      <main style={{ flex: 1, paddingTop: isAdminRoute ? '120px' : '80px' }}>
+
+      <main
+        className={`${styles.mainContent} ${
+          isAdminRoute ? styles.adminLayout : styles.publicLayout
+        }`}
+      >
         {children}
       </main>
-      
+
       {!isAdminRoute && <Footer />}
     </div>
   );
 }
 
-// Main export that provides the authentication context
+// The main export that wraps everything in the AuthProvider
 export default function ClientLayout({ children }) {
   return (
     <AuthProvider>

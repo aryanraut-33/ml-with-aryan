@@ -1,0 +1,136 @@
+@keyframes blink {
+    50% { opacity: 0; }
+  }
+  @keyframes success-glow {
+    0% { text-shadow: 0 0 5px var(--accent-blue-glow); }
+    50% { text-shadow: 0 0 20px var(--accent-blue); }
+    100% { text-shadow: 0 0 5px var(--accent-blue-glow); }
+  }
+  
+  .terminal {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--background-dark);
+    padding: 2rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1rem;
+    overflow-y: auto;
+    cursor: text;
+    position: relative; /* For the home link */
+    
+    /* --- FIX D: Grid Background --- */
+    background-image:
+      linear-gradient(to right, rgba(42, 42, 42, 0.5) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(42, 42, 42, 0.5) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  /* --- FIX C: Home Link --- */
+  .homeLink {
+    position: fixed;
+    /* 1. Positioned in the upper right corner */
+    top: 1.5rem;
+    right: 1.5rem;
+    
+    color: var(--text-secondary);
+    opacity: 0.5;
+    font-size: 1.5rem;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    
+    /* 2. Use flexbox to align the text and icon */
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+  
+  .homeLink:hover {
+    opacity: 1;
+    color: var(--accent-blue);
+  }
+  
+  /* 3. The text is hidden by default and slides out from the icon */
+  .homeLinkText {
+    font-size: 1rem; /* Proportional to the icon */
+    font-weight: 500;
+    white-space: nowrap; /* Prevent text from wrapping */
+    
+    /* Animation properties */
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  
+  /* 4. On hover, the text becomes visible and slides into place */
+  .homeLink:hover .homeLinkText {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* 5. The icon itself gets the glow effect on hover */
+  .homeLink svg {
+    transition: filter 0.3s ease;
+  }
+  .homeLink:hover svg {
+    filter: drop-shadow(0 0 8px var(--accent-blue));
+  }
+  
+  .system {
+    color: var(--text-secondary);
+    white-space: pre-wrap;
+    margin-bottom: 0.5rem;
+  }
+  
+  .user {
+    color: var(--text-primary);
+    white-space: pre-wrap;
+    margin-bottom: 0.5rem;
+  }
+  
+  .error {
+    color: #ff4d4d;
+    white-space: pre-wrap;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* --- FIX E: Success Animation Styles --- */
+  .success {
+    color: #2ed573;
+  }
+  .success-final {
+    color: var(--accent-blue);
+    white-space: pre-wrap;
+    text-align: center;
+    font-size: 1.2rem;
+    animation: success-glow 2s infinite ease-in-out;
+  }
+  
+  .inputLine {
+    display: flex;
+    align-items: center;
+  }
+  
+  .prompt {
+    color: var(--accent-blue);
+    margin-right: 0.5rem;
+    white-space: nowrap;
+  }
+  
+  .input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: inherit;
+  }
+  .input:focus {
+    outline: none;
+  }
+  
+  /* Blinking cursor effect for the input field */
+  .input::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+  }
+

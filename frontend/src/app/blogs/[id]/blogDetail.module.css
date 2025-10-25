@@ -13,6 +13,8 @@
 .meta {
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
   color: var(--text-secondary);
   font-size: 0.9rem;
   margin-bottom: 2.5rem;
@@ -137,12 +139,23 @@
   margin: 1.5rem 0;
 }
 
+.interactionContainer {
+  margin-left: auto; /* Pushes the buttons to the far right */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 @media (max-width: 768px) {
   .article {
     margin-top: 2rem;
   }
-
   .title {
-    font-size: 2rem; /* Reduce title size on mobile */
+    font-size: 2rem;
+  }
+  /* Hide the date and views spans on mobile */
+  .meta span:nth-of-type(2),
+  .meta span:nth-of-type(3) {
+    display: none;
   }
 }

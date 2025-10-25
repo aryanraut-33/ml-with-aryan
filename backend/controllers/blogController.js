@@ -9,49 +9,27 @@ const getBlogs = async (req, res) => {
     const sortBy = req.query.sort === 'popular' ? 'views' : 'createdAt';
 
     const blogs = await Blog.aggregate([
-      // Join with the viewcounts collection
-      {
-        $lookup: {
-          from: 'viewcounts',
-          localField: '_id',
-          foreignField: 'contentId',
-          as: 'viewInfo'
-        }
-      },
-      // Join with the users collection
-      {
-        $lookup: {
-          from: 'users',
-          localField: 'author',
-          foreignField: '_id',
-          as: 'authorInfo'
-        }
-      },
-      // Deconstruct the array from the lookup
+      { $lookup: { from: 'viewcounts', localField: '_id', foreignField: 'contentId', as: 'viewInfo' } },
+      { $lookup: { from: 'users', localField: 'author', foreignField: '_id', as: 'authorInfo' } },
+      { $lookup: { from: 'likes', localField: '_id', foreignField: 'contentId', as: 'likes' } },
+      { $lookup: { from: 'bookmarks', localField: '_id', foreignField: 'contentId', as: 'bookmarks' } },
       { $unwind: { path: '$viewInfo', preserveNullAndEmptyArrays: true } },
       { $unwind: { path: '$authorInfo', preserveNullAndEmptyArrays: true } },
-      // Add a 'views' field, defaulting to 0 if no view count exists
-      {
-        $addFields: {
-          views: { $ifNull: ['$viewInfo.count', 0] }
-        }
-      },
-      // Sort by the chosen field (views or createdAt)
-      {
-        $sort: { [sortBy]: -1 }
-      },
-      // Shape the final output
-      {
-        $project: {
-          title: 1, description: 1, thumbnailUrl: 1, tags: 1, createdAt: 1, views: 1,
+      { $addFields: {
+          views: { $ifNull: ['$viewInfo.count', 0] },
+          likeCount: { $size: '$likes' },
+          bookmarkCount: { $size: '$bookmarks' }
+      }},
+      { $sort: { [sortBy]: -1 } },
+      { $project: {
+          title: 1, description: 1, thumbnailUrl: 1, tags: 1, createdAt: 1, views: 1, authorName: 1,
+          likeCount: 1, bookmarkCount: 1,
           'author.username': '$authorInfo.username',
-          'author.id': '$authorInfo._id'
-        }
-      }
+      }}
     ]);
     res.json(blogs);
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching blogs:", error);
     res.status(500).json({ message: 'Server Error' });
   }
 };

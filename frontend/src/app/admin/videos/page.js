@@ -51,6 +51,8 @@ export default function ManageVideos() {
           <tr>
             <th>Title</th>
             <th>Views</th>
+            <th>Likes</th>
+            <th>Bookmarks</th>
             <th>Created At</th>
             <th>Actions</th>
           </tr>
@@ -60,6 +62,8 @@ export default function ManageVideos() {
             <tr key={video._id}>
               <td>{video.title}</td>
               <td>{video.views}</td>
+              <td>{video.likeCount}</td>
+              <td>{video.bookmarkCount}</td>
               <td>{new Date(video.createdAt).toLocaleDateString()}</td>
               <td className={styles.actions}>
                 <Link href={`/admin/videos/edit/${video._id}`} className={styles.editButton}>

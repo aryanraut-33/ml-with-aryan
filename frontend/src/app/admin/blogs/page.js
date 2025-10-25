@@ -51,6 +51,8 @@ export default function ManageBlogs() {
           <tr>
             <th>Title</th>
             <th>Views</th>
+            <th>Likes</th>
+            <th>Bookmarks</th>
             <th>Created At</th>
             <th>Actions</th>
           </tr>
@@ -59,11 +61,13 @@ export default function ManageBlogs() {
           {blogs.map((blog) => (
             <tr key={blog._id}>
               <td>{blog.title}</td>
-              <td>{blog.views}</td>
+              <td>{blog.views || -1}</td>
+              <td>{blog.likeCount || -1}</td>
+              <td>{blog.bookmarkCount || -1}</td>
               <td>{new Date(blog.createdAt).toLocaleDateString()}</td>
               <td className={styles.actions}>
                 <Link href={`/admin/blogs/edit/${blog._id}`} className={styles.editButton}>
-                  Edit
+                Edit
                 </Link>
                 <button onClick={() => handleDelete(blog._id)} className={styles.deleteButton}>
                   Delete

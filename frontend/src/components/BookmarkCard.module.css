@@ -1,0 +1,99 @@
+/* --- BASE STYLES (MOBILE-FIRST) --- */
+.card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--background-light);
+    transition: all 0.3s ease;
+  }
+  
+  .imageContainer {
+    position: relative;
+    flex-shrink: 0; /* Prevents the image from shrinking */
+    width: 80px;
+    height: 45px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  /* --- THIS IS THE DEFINITIVE FIX --- */
+  .content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    /* This is the crucial property that allows the flex item to shrink and wrap its text */
+    min-width: 0; 
+  }
+  
+  .title {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    /* Allow the title to wrap instead of overflowing */
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+  /* ------------------------------------ */
+  
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .tags { display: none; }
+  .tag { font-size: 0.7rem; background-color: #2a2a2a; padding: 0.2rem 0.4rem; border-radius: 4px; color: var(--text-secondary); }
+  
+  .date {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+  }
+  
+  .arrowIcon {
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+  }
+  
+  /* --- PROGRESSIVE ENHANCEMENT FOR LARGER SCREENS --- */
+  @media (min-width: 768px) {
+    .card {
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+    .card:hover {
+      border-color: var(--accent-blue);
+      background-color: #1a1a1a;
+    }
+  
+    .imageContainer {
+      width: 100px;
+      height: 60px;
+    }
+  
+    .title {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      /* Revert to single-line truncation for desktop */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  
+    .tags {
+      display: flex;
+      gap: 0.5rem;
+    }
+  
+    .date {
+      font-size: 0.8rem;
+    }
+  
+    .card:hover .arrowIcon {
+      color: var(--accent-blue);
+      transform: rotate(45deg);
+    }
+  }
