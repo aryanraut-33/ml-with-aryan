@@ -93,3 +93,8 @@
 .link:hover {
   text-decoration: underline;
 }
+.extraOptions {
+  text-align: right;
+  margin-bottom: 2rem;
+  margin-top: -1.5rem; /* Pull it up to fill space */
+}

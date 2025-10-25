@@ -34,6 +34,9 @@ export default function LoginPage() {
         <label htmlFor="key">Password</label>
         <input id="key" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required className={styles.input} />
       </div>
+      <div className={styles.extraOptions}>
+        <Link href="/forgot-password" className={styles.link}>Forgot Key?</Link>
+      </div>
       <button type="submit" className={styles.button}>
         <span>Authenticate</span>
         <FiLogIn />
