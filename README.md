@@ -2,7 +2,7 @@
 
 > An interactive, community-driven, and visually sophisticated full-stack platform for publishing and managing Machine Learning content.
 
-![ML with Aryan Homepage](https://res.cloudinary.com/dxghlnzxg/image/upload/v1761355771/Screenshot_2025-10-25_at_6.59.12_AM_q839vf.png)(https://aryanraut.tech)
+[![Landing Page](https://res.cloudinary.com/dxghlnzxg/image/upload/v1761355771/Screenshot_2025-10-25_at_6.59.12_AM_q839vf.png)](https://aryanraut.tech)
 
 (click the screengrab to visit the website)
 
