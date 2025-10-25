@@ -1,21 +1,24 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react'; // ✅ Fixed duplicate imports
 import { useAuth } from 'context/AuthContext';
 import styles from './CliAuth.module.css';
 import Link from 'next/link';
 import { FiHome } from 'react-icons/fi';
 
-const CliAuth = () => {
+export default function CliAuth() {
   const { login, register } = useAuth();
-  const [lines, setLines] = useState([{ text: '[ML with Aryan Vault] > Type "login" or "signup" to begin.\nHit esc (or reload page)to restart.', type: 'system' }]);
+  
+  const [lines, setLines] = useState([
+    { text: '[ML with Aryan Vault] > Type "login" or "signup" to begin.\nHit esc (or reload page) to restart.', type: 'system' }
+  ]);
   const [input, setInput] = useState('');
   const [mode, setMode] = useState('initial');
   const [step, setStep] = useState(0);
   const [isPassword, setIsPassword] = useState(false);
   const [formData, setFormData] = useState({});
   const [isProcessing, setIsProcessing] = useState(false);
-  
+
   const endOfLinesRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -29,27 +32,29 @@ const CliAuth = () => {
     inputRef.current?.focus();
   }, [lines]);
 
-  // --- FIX B: Escape Key Handler ---
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        resetToInitial();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  const resetToInitial = () => {
-    addLine('---------------------------------');
-    addLine('Sequence aborted. Returning to initial state.');
-    addLine('[ML with Aryan Vault] > Type "login" or "signup" to begin.');
+  // --- FIX: Stable reset function ---
+  const resetToInitial = useCallback(() => {
+    setLines(prev => [
+      ...prev,
+      { text: '---------------------------------', type: 'system' },
+      { text: 'Sequence aborted. Returning to initial state.', type: 'system' },
+      { text: '[ML with Aryan Vault] > Type "login" or "signup" to begin.', type: 'system' }
+    ]);
     setMode('initial');
     setStep(0);
     setFormData({});
     setIsPassword(false);
     setIsProcessing(false);
-  };
+  }, []);
+
+  // --- ESC key handler ---
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') resetToInitial();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [resetToInitial]);
 
   const addLine = (text, type = 'system') => {
     setLines(prev => [...prev, { text, type }]);
@@ -57,7 +62,7 @@ const CliAuth = () => {
 
   const handleCommand = async () => {
     if (isProcessing) return;
-    
+
     const command = input.trim();
     addLine(`> ${input}`, 'user');
     setInput('');
@@ -80,7 +85,7 @@ const CliAuth = () => {
     let field = currentSteps[step];
     const newFormData = { ...formData, [field]: command };
     setFormData(newFormData);
-    
+
     if (step < currentSteps.length - 1) {
       const nextField = currentSteps[step + 1];
       const prompt = nextField.replace(/([A-Z])/g, ' $1');
@@ -92,21 +97,19 @@ const CliAuth = () => {
       try {
         if (mode === 'login') {
           addLine('Authenticating...', 'success');
-          await new Promise(resolve => setTimeout(resolve, 1000)); // Dramatic pause
+          await new Promise(resolve => setTimeout(resolve, 1000));
           await login(newFormData.loginIdentifier, newFormData.password);
         } else {
           addLine('Creating account...', 'success');
-          await new Promise(resolve => setTimeout(resolve, 1000)); // Dramatic pause
+          await new Promise(resolve => setTimeout(resolve, 1000));
           await register(newFormData);
         }
-        // --- FIX E: Success Animation ---
-        setLines(prev => [...prev, { text: `\n█║▌║ █║▌ ║║▌║ █║▌║ █║▌ ║║▌║\nAccess Granted. Welcome, ${newFormData.username || newFormData.loginIdentifier}.\nRedirecting...`, type: 'success-final' }]);
+        addLine(`\n█║▌║ █║▌ ║║▌║ █║▌║ █║▌ ║║▌║\nAccess Granted. Welcome, ${newFormData.username || newFormData.loginIdentifier}.\nRedirecting...`, 'success-final');
       } catch (err) {
         const errorMessage = err.response?.data?.message || 'An unknown error occurred.';
         addLine(`Authentication Failed: ${errorMessage}`, 'error');
         resetToInitial();
       }
-      // No need to set isProcessing to false on success, as the page will redirect.
     }
   };
 
@@ -119,17 +122,18 @@ const CliAuth = () => {
 
   return (
     <div className={styles.terminal} onClick={() => inputRef.current?.focus()}>
-      {/* --- FIX C: Back to Site Button --- */}
+      {/* Back to Site Button */}
       <Link href="/" className={styles.homeLink}>
         <span className={styles.homeLinkText}>Back to Site</span>
         <FiHome />
       </Link>
-      
+
       {lines.map((line, index) => (
         <p key={index} className={styles[line.type]}>
           {line.text}
         </p>
       ))}
+
       {!isProcessing && (
         <div className={styles.inputLine}>
           <span className={styles.prompt}>{getPrompt()}</span>
@@ -148,6 +152,4 @@ const CliAuth = () => {
       <div ref={endOfLinesRef} />
     </div>
   );
-};
-
-export default CliAuth;
+}

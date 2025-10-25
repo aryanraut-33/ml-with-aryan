@@ -48,7 +48,7 @@ export default function ProfilePage() {
           {bookmarks.blogs.map(blog => <BookmarkCard key={blog._id} item={blog} />)}
         </div>
       ) : (
-        <p className={styles.emptyText}>You haven't bookmarked any articles yet.</p>
+        <p className={styles.emptyText}>You haven&apos;t bookmarked any articles yet.</p>
       )}
 
       <h2 className={`${styles.sectionTitle}`} style={{ marginTop: '4rem' }}>Bookmarked Videos</h2>
@@ -57,7 +57,7 @@ export default function ProfilePage() {
           {bookmarks.videos.map(video => <BookmarkCard key={video._id} item={video} />)}
         </div>
       ) : (
-        <p className={styles.emptyText}>You haven't bookmarked any videos yet.</p>
+        <p className={styles.emptyText}>You haven&apos;t bookmarked any articles yet.</p>
       )}
     </div>
   );
