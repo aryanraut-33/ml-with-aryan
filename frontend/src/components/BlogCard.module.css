@@ -92,9 +92,19 @@
 
 /* On mobile, make the overlay permanently visible */
 @media (max-width: 768px) {
-  .interactionOverlay {
-    opacity: 1;
-    transform: translateY(0);
+  /* Scale down the grid cards on mobile */
+  .content {
+    padding: 0.75rem; /* Reduced padding */
+  }
+  .title {
+    font-size: 0.9rem; /* Reduced font size */
+  }
+  .description {
+    font-size: 0.8rem;
+    -webkit-line-clamp: 2; /* Show fewer lines */
+  }
+  .authorName, .date {
+    font-size: 0.7rem;
   }
 }
 

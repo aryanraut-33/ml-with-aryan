@@ -62,18 +62,34 @@
 .readMore { color: var(--accent-blue); font-weight: 600; display: flex; align-items: center; gap: 0.25rem; font-size: 0.9rem; }
 
 /* Progressive Enhancement for Larger Screens */
+@media (max-width: 768px) {
+  /* Aggressively scale down the featured card on mobile */
+  .imageContainer {
+    min-height: 130px; /* ~35% smaller */
+  }
+  .content {
+    padding: 1rem; /* ~35% smaller */
+  }
+  .title {
+    font-size: 1rem; /* ~35% smaller */
+  }
+  .description {
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  .readMore, .authorName, .date {
+    font-size: 0.75rem;
+  }
+}
+
+/* Progressive Enhancement for Desktop */
 @media (min-width: 768px) {
   .card {
     grid-template-columns: 1fr 1fr;
   }
-
-  /* --- FIX for Desktop --- */
-  /* The padding-top trick works for both mobile and desktop, so no height override is needed. */
   .imageContainer {
-    padding-top: 0; /* Reset padding because height is now controlled by the grid row */
+    min-height: 260px;
   }
-  /* ----------------------- */
-  
   .title {
     font-size: 1.5rem;
   }

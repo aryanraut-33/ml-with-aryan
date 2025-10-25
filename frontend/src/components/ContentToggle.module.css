@@ -14,9 +14,12 @@
     align-items: flex-start;
     gap: 1rem;
   }
+  .sectionTitle {
+    font-size: 1.5rem; /* 25% reduction from 2rem */
+  }
 }
 
-.sectionTitle { font-size: 2rem; }
+.sectionTitle { font-size: 1.5rem; }
 .toggleButtons { display: flex; gap: 0.5rem; background-color: var(--background-light); border: 1px solid var(--border-color); padding: 0.5rem; border-radius: 9999px; }
 .toggleButtons button { background: transparent; border: none; color: var(--text-secondary); padding: 0.5rem 1rem; border-radius: 9999px; cursor: pointer; font-family: inherit; font-weight: 500; transition: all 0.2s ease-in-out; }
 .toggleButtons button.active { background-color: var(--accent-blue); color: var(--background-dark); box-shadow: 0 0 15px var(--accent-blue-glow); }
