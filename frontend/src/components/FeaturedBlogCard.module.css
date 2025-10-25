@@ -1,7 +1,7 @@
 /* --- Mobile-First Base Styles --- */
 .card {
   display: grid;
-  grid-template-columns: 1fr; /* Default to a single column for mobile */
+  grid-template-columns: 1fr;
   gap: 0;
   background-color: transparent;
   border: 1px solid var(--border-color);
@@ -16,10 +16,16 @@
   border-color: var(--accent-blue);
 }
 
+/* --- THIS IS THE DEFINITIVE FIX --- */
 .imageContainer {
   position: relative;
-  min-height: 200px;
+  width: 100%; /* Ensure the container takes the full width of its grid cell */
+  /* Use padding-top to create a 16:9 aspect ratio container. (9 / 16 * 100 = 56.25%) */
+  /* The min-height property has been removed. */
+  padding-top: 56.25%; 
 }
+/* ------------------------------------ */
+
 
 .content {
   padding: 1.5rem;
@@ -44,7 +50,6 @@
   margin-bottom: 1rem;
   line-height: 1.6;
   font-size: 0.9rem;
-  /* Ensures that long strings without spaces will wrap */
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
@@ -56,14 +61,19 @@
 .date { font-size: 0.75rem; color: var(--text-secondary); }
 .readMore { color: var(--accent-blue); font-weight: 600; display: flex; align-items: center; gap: 0.25rem; font-size: 0.9rem; }
 
-/* --- Progressive Enhancement for Larger Screens --- */
+/* Progressive Enhancement for Larger Screens */
 @media (min-width: 768px) {
   .card {
-    grid-template-columns: 1fr 1fr; /* Switch to two columns on tablet and up */
+    grid-template-columns: 1fr 1fr;
   }
+
+  /* --- FIX for Desktop --- */
+  /* The padding-top trick works for both mobile and desktop, so no height override is needed. */
   .imageContainer {
-    min-height: 260px;
+    padding-top: 0; /* Reset padding because height is now controlled by the grid row */
   }
+  /* ----------------------- */
+  
   .title {
     font-size: 1.5rem;
   }
