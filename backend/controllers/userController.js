@@ -5,7 +5,6 @@ const Blog = require('../models/Blog');
 const Video = require('../models/Video');
 const Like = require('../models/Like');
 const Bookmark = require('../models/Bookmark');
-const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const sgMail = require('@sendgrid/mail');
 
