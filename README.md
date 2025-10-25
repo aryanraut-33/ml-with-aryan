@@ -1,83 +1,72 @@
-# ML with Aryan: A Modern Content Platform
+# ML with Aryan - V2: A Modern Content Platform
 
-> A minimal, performant, and visually sophisticated full-stack platform for publishing and managing Machine Learning blogs and video content.
+> An interactive, community-driven, and visually sophisticated full-stack platform for publishing and managing Machine Learning content.
 
-![ML with Aryan Homepage](https://res.cloudinary.com/dxghlnzxg/image/upload/v1761121043/Screenshot_2025-10-22_at_1.45.54_PM_t7qbe7.png) 
-
+![ML with Aryan Homepage](https://res.cloudinary.com/dxghlnzxg/image/upload/v1761121043/Screenshot_2025-10-22_at_1.45.54_PM_t7qbe7.png)
 
 ## About The Project
 
-"ML with Aryan" was built from the ground up as a personal content platform for a Machine Learning author. The core vision was to create a sleek, minimal-stack website that is easy to deploy, maintain, and extend. The platform serves two primary stakeholders:
+"ML with Aryan" has evolved from a personal portfolio into a dynamic content hub. Version 2 introduces a full suite of community features, a complete UI/UX overhaul, and a robust, mobile-first responsive architecture. The platform is designed for a premium user experience, from its immersive, interactive design to its powerful authoring tools.
 
-*   **Readers:** Visitors who can browse, read, and watch articles and videos on a clean, responsive, and interactive user interface.
-*   **Admin (Author):** The owner of the site, who can securely log in to a dedicated dashboard to perform full CRUD (Create, Read, Update, Delete) operations on all content, manage authors, and view performance analytics.
+The platform serves three primary roles:
 
-This project was architected by **Nova**, focusing on modern development patterns, a clean separation of concerns, and a premium user experience.
+*   **Readers:** Visitors who can browse, read, and watch content on a stunning, responsive interface.
+*   **Authenticated Users:** Logged-in members who can personalize their experience by liking and bookmarking content, which is saved to their private "Vault".
+*   **Admin (Author):** The owner of the site, who has access to a secure, data-rich dashboard to perform full CRUD operations on all content and view performance analytics.
 
-## Key Features
+This project was architected by **Nova**, with an unwavering focus on modern development patterns, a clean separation of concerns, and a world-class user experience.
 
-### For Readers
-*   **Fully Responsive Design:** A seamless experience on any device, from mobile phones to widescreen desktops.
-*   **Interactive UI:** Features a dynamic, animated background grid with a mouse-tracking "aura" effect, and a continuously scrolling logo carousel.
-*   **Dynamic Content Hub:** Homepage features a magazine-style layout with a prominent "featured" post and a grid of older content.
-*   **Content Toggling:** Users can instantly switch between "Latest Articles" and "Latest Videos" on the homepage without a page reload.
+## V2 Key Features
+
+### For Readers & Users
+*   **Full User Authentication:** Secure sign-up and login system for all users.
+*   **Personalized "My Vault":** A dedicated profile page where users can find all their bookmarked articles and videos.
+*   **Content Interaction:** The ability to "Like" and "Bookmark" content, with the user's interaction state reflected across the site.
+*   **Fully Responsive Design:** A seamless, adaptive experience on any device, from mobile phones to widescreen desktops.
+*   **Immersive UI:** A unique aesthetic featuring a dynamic, animated grid background and a mouse-tracking "aura" effect.
+*   **Dynamic Content Hub:** Homepage features a magazine-style "featured + grid" layout and a toggle to instantly switch between articles and videos.
 *   **Advanced Sorting:** Both the blogs and videos gallery pages can be sorted by "Latest" or "Most Popular" (by view count).
-*   **Markdown Rendering:** Blog posts are rendered from Markdown, allowing for rich text formatting and inline images.
+*   **Easy Sharing:** A one-click "Copy Link" feature on all content pages.
 
 ### For the Admin
-*   **Secure Authentication:** A dedicated "Vault Access" login page with JWT-based authentication.
-*   **Data-Rich Dashboard:** A command center that displays key performance indicators, including total views, content counts, and a visual bar chart of top-performing posts.
-*   **Full CRUD Functionality:** Manage all aspects of blogs and videos, including titles, descriptions, tags, and author names.
-*   **Local File Uploads:** A seamless thumbnail and inline image upload system integrated with Cloudinary for robust media management.
-*   **Separated UI:** A distinct, professional admin interface that is functionally and visually separate from the public-facing site.
+*   **Data-Rich Dashboard:** A redesigned command center displaying key performance indicators: Total Views, Likes, Bookmarks, and content counts, complete with a visual bar chart of top-performing posts.
+*   **Enhanced Content Management:** Management tables now display like and bookmark counts for each post.
+*   **Markdown with Inline Images:** The main content editor is powered by Markdown, with an integrated image uploader to easily embed media anywhere within an article.
+*   **Local File Uploads:** A seamless thumbnail and inline image upload system integrated with **Cloudinary** for robust media management.
+*   **Refined UI/UX:** A professional, horizontal command bar and consistent design language that is functionally and visually separate from the public site.
 
 ## Tech Stack
 
-This project is built on the MERN stack, with a modern frontend framework and a focus on best practices for deployment.
-
 ### Frontend
 *   **Framework:** Next.js (React)
-*   **Styling:** CSS Modules, with a mobile-first, responsive design.
+*   **Styling:** CSS Modules (Mobile-First)
 *   **UI & Animations:**
-    *   `react-icons` for a comprehensive icon set.
-    *   `react-tsparticles` & `tsparticles` for the animated particle background.
-    *   `react-fast-marquee` for the infinite logo carousel.
-    *   `recharts` for the dashboard performance chart.
+    *   `react-icons`
+    *   `react-tsparticles` & `tsparticles` (Subtle background animation)
+    *   `react-fast-marquee` (Infinite logo carousel)
+    *   `recharts` (Dashboard performance chart)
+*   **Markdown:** `react-markdown`
 *   **Data Fetching:** Axios
 
 ### Backend
 *   **Framework:** Node.js with Express.js
 *   **Authentication:** JSON Web Tokens (JWT)
-*   **File Handling:** Multer for receiving file uploads.
+*   **File Handling:** Multer
 
 ### Database & Cloud
-*   **Database:** MongoDB Atlas (Cloud)
+*   **Database:** MongoDB Atlas
 *   **ORM:** Mongoose
-*   **Image Hosting:** Cloudinary for all media uploads.
+*   **Image Hosting:** Cloudinary
 
 ### Deployment
 *   **Frontend:** Vercel
 *   **Backend:** Render
 
-## High-Level Architecture
-
-The project follows a modern, decoupled architecture with a clear separation of concerns:
-
-*   **Monorepo:** Both frontend and backend codebases are managed within a single GitHub repository for streamlined development.
-*   **REST API:** The Express.js backend serves a RESTful API that the frontend consumes for all data operations.
-*   **Separate Deployments:**
-    *   The Next.js frontend is deployed as a static/SSR site on **Vercel**, leveraging its global CDN for high performance.
-    *   The Node.js backend is deployed as a web service on **Render**, handling all server-side logic and database connections.
-
 ## Getting Started
 
-To get a local copy up and running, follow these simple steps.
-
 ### Prerequisites
-
-You will need the following software installed on your machine:
 *   Node.js (v18.x or later)
-*   npm (comes with Node.js)
+*   npm
 *   Git
 
 ### Installation & Setup
@@ -99,7 +88,7 @@ You will need the following software installed on your machine:
     ```
 
 3.  **Setup the Frontend:**
-    In a new terminal window:
+    In a new terminal:
     ```sh
     cd frontend
     npm install
@@ -109,13 +98,10 @@ You will need the following software installed on your machine:
     npm run dev
     ```
 
-## Environment Variables
+## Environment Variables needed for respective deployments
 
-To run this project, you will need to add the following environment variables to your `.env` and `.env.local` files.
-
-### Backend (`backend/.env`)
-
-```sh
+#### Backend (`backend/.env`)
+```env
 MONGO_URI
 JWT_SECRET
 CLOUDINARY_CLOUD_NAME
@@ -123,7 +109,7 @@ CLOUDINARY_API_KEY
 CLOUDINARY_API_SECRET
 ```
 
-# Frontend (`frontend/.env.local`)
+#### Frontend (`frontend/.env.local`)
 
 ```sh
 NEXT_PUBLIC_API_URL
@@ -141,10 +127,9 @@ This project is designed for separate deployments on Vercel and Render from a si
 
 ## Future Enhancements
 
-- **Full-Text Search:** Implement a search bar to query blogs and videos.  
-- **CI/CD Pipeline:** Add GitHub Actions to run tests before deployment.  
+- **Full-Text Search:** Implement a search bar to query blogs and videos. 
+- **Reader Comments:** The reader should be able to comment and interact with the author and community, under any resource
 - **Pagination:** For the `/blogs` and `/videos` pages to handle a large amount of content.  
-- **Advanced Analytics:** Integrate a more robust analytics tool for deeper insights.
 
 ---
 
