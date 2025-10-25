@@ -41,7 +41,7 @@ export default function ResetPasswordPage() {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <h1 className={styles.title}>Choose a New Password</h1>
+      <h1 className={styles.title}>Create a New Password</h1>
       
       {message && <p style={{ color: '#2ed573', textAlign: 'center', marginBottom: '1rem' }}>{message}</p>}
       {error && <p className={styles.error}>{error}</p>}

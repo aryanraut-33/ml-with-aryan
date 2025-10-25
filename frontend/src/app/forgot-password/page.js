@@ -31,7 +31,7 @@ export default function ForgotPasswordPage() {
     <form onSubmit={handleSubmit} className={styles.form}>
       <h1 className={styles.title}>Reset Key</h1>
       <p style={{ textAlign: 'center', color: 'var(--text-secondary)', marginBottom: '2rem' }}>
-        Enter your email address and we will send you a link to reset your key. Not in your Primary inbox? Check spam!
+      Reset your password via email. Missing it? Check spam.
       </p>
       
       {message && <p style={{ color: '#2ed573', textAlign: 'center', marginBottom: '1rem' }}>{message}</p>}
