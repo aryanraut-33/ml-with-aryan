@@ -21,7 +21,7 @@ function LayoutManager({ children }) {
 
   // Determine the current route type
   const isAdminRoute = pathname.startsWith('/admin');
-  const isAuthRoute = pathname === '/login' || pathname === '/signup';
+  const isAuthRoute = pathname === '/login' || pathname === '/signup' || pathname.startsWith('/forgot-password') || pathname.startsWith('/reset-password');
 
   // Effect for hiding the public header on scroll
   useEffect(() => {
