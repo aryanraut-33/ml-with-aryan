@@ -17,16 +17,57 @@ const generateToken = (id) => {
 // @desc    Register a new user
 const registerUser = async (req, res) => {
   const { name, username, email, phoneNumber, password } = req.body;
+
   if (!name || !username || !email || !phoneNumber || !password) {
     return res.status(400).json({ message: 'Please provide all required fields' });
   }
+
+  // --- THIS IS THE NEW VALIDATION BLOCK ---
+
+  // 1. Email Validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ message: 'Please enter a valid email address.' });
+  }
+
+  // 2. Phone Number Validation (simple check for 10-15 digits)
+  const phoneRegex = /^\d{10,15}$/;
+  if (!phoneRegex.test(phoneNumber)) {
+    return res.status(400).json({ message: 'Please enter a valid phone number (digits only).' });
+  }
+
+  // 3. Password Strength Validation
+  if (password.length < 8) {
+    return res.status(400).json({ message: 'Password must be at least 8 characters long.' });
+  }
+  if (!/[A-Z]/.test(password)) {
+    return res.status(400).json({ message: 'Password must contain at least one uppercase letter.' });
+  }
+  if (!/[a-z]/.test(password)) {
+    return res.status(400).json({ message: 'Password must contain at least one lowercase letter.' });
+  }
+  if (!/[0-9]/.test(password)) {
+    return res.status(400).json({ message: 'Password must contain at least one number.' });
+  }
+  if (!/[!@#$%^&*]/.test(password)) {
+    return res.status(400).json({ message: 'Password must contain at least one special character (!@#$%^&*).' });
+  }
+
+  // ------------------------------------
+
   const userExists = await User.findOne({ $or: [{ username }, { email }, { phoneNumber }] });
   if (userExists) {
     return res.status(400).json({ message: 'User with this username, email, or phone number already exists' });
   }
+
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
-  const user = await User.create({ name, username, email, phoneNumber, password: hashedPassword });
+
+  const user = await User.create({
+    name, username, email, phoneNumber,
+    password: hashedPassword,
+  });
+
   if (user) {
     res.status(201).json({
       _id: user.id, name: user.name, username: user.username, isAdmin: user.isAdmin,
