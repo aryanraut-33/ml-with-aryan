@@ -1,12 +1,12 @@
-import api from 'lib/api';
-import HomePageClient from 'components/HomePageClient'; //comment ffs
+
+import { getLatestContentData } from '@/lib/data';
+import HomePageClient from 'components/HomePageClient';
 
 export const dynamic = 'force-dynamic';
 
 async function getLatestContent() {
   try {
-    const res = await api.get('/api/content/latest');
-    return res.data;
+    return await getLatestContentData();
   } catch (error) {
     console.error('Failed to fetch latest content:', error);
     return { blogs: [], videos: [] };
@@ -17,3 +17,4 @@ export default async function HomePage() {
   const { blogs, videos } = await getLatestContent();
   return <HomePageClient blogs={blogs} videos={videos} />;
 }
+

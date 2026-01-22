@@ -4,10 +4,11 @@ import VideoDetailClient from 'components/VideoDetailClient'; // Import our new 
 
 export const dynamic = 'force-dynamic';
 
+import { getVideoById } from '@/lib/data';
+
 async function getVideo(id) {
   try {
-    const res = await api.get(`/api/videos/${id}`);
-    return res.data;
+    return await getVideoById(id);
   } catch (error) {
     console.error(`Failed to fetch video with ID ${id}:`, error);
     return null;
