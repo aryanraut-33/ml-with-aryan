@@ -15,6 +15,7 @@ async function getBlog(id) {
 }
 
 export default async function BlogDetailPage({ params }) {
-  const blog = await getBlog(params.id);
+  const { id } = await params;
+  const blog = await getBlog(id);
   return <BlogDetailClient blog={blog} />;
 }

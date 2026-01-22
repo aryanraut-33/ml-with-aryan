@@ -17,7 +17,8 @@ async function getVideo(id) {
 
 export default async function VideoDetailPage({ params }) {
   // 1. Fetch data on the server.
-  const video = await getVideo(params.id);
+  const { id } = await params;
+  const video = await getVideo(id);
 
   // 2. Pass the data as a prop to the client component for rendering.
   return <VideoDetailClient video={video} />;
