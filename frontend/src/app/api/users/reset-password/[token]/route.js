@@ -9,7 +9,7 @@ import { generateToken } from '@/lib/auth-helper';
 export async function POST(req, { params }) {
     try {
         await dbConnect();
-        const { token } = params; // params is now async pending in very new Next.js, but standard is sync in page, here in route handler { params } is 2nd arg
+        const { token } = await params;
         const { password } = await req.json();
 
         const hashedToken = crypto.createHash('sha256').update(token).digest('hex');

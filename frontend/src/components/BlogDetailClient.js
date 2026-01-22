@@ -5,6 +5,9 @@ import Image from 'next/image';
 import { FiMaximize2, FiMinimize2 } from 'react-icons/fi';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css'; // Import Katex CSS
 import styles from 'app//blogs/[id]/blogDetail.module.css';
 import { useAuth } from 'context/AuthContext';
 import api from 'lib/api';
@@ -73,7 +76,10 @@ export default function BlogDetailClient({ blog }) {
         </div>
       )}
       <div className={styles.content}>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm, remarkMath]}
+          rehypePlugins={[rehypeKatex]}
+        >
           {blog.content}
         </ReactMarkdown>
       </div>

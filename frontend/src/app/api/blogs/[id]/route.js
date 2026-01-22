@@ -9,7 +9,7 @@ import { adminProtect } from '@/lib/auth-helper';
 export async function GET(req, { params }) {
     try {
         await dbConnect();
-        const { id } = params;
+        const { id } = await params;
 
         const blog = await Blog.findById(id).populate('author', 'username');
 
@@ -36,7 +36,7 @@ export async function PUT(req, { params }) {
             return NextResponse.json({ message: 'Not authorized as an admin' }, { status: 401 });
         }
 
-        const { id } = params;
+        const { id } = await params;
         const body = await req.json();
         const { title, content, tags, thumbnailUrl, description, authorName } = body;
 
@@ -68,7 +68,7 @@ export async function DELETE(req, { params }) {
             return NextResponse.json({ message: 'Not authorized as an admin' }, { status: 401 });
         }
 
-        const { id } = params;
+        const { id } = await params;
         const blog = await Blog.findById(id);
 
         if (blog) {

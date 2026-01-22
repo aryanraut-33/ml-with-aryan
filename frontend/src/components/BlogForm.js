@@ -111,7 +111,12 @@ export default function BlogForm({ onSubmit, initialData = {}, isEditing = false
       />
 
       {/* ---- MAIN CONTENT ---- */}
-      <label htmlFor="content" className={styles.label}>Content</label>
+      <label htmlFor="content" className={styles.label}>
+        Content
+        <span style={{ fontSize: '0.8rem', color: '#888', marginLeft: '10px', fontWeight: 'normal' }}>
+          (Supports Markdown & LaTeX: $E=mc^2$)
+        </span>
+      </label>
       <textarea
         id="content"
         value={content}

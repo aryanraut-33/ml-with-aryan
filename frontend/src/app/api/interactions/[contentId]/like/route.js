@@ -12,7 +12,7 @@ export async function POST(req, { params }) {
         }
 
         await dbConnect();
-        const { contentId } = params;
+        const { contentId } = await params;
         const body = await req.json();
         const { contentType } = body; // 'blog' or 'video'
 
