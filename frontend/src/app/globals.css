@@ -50,6 +50,12 @@ main {
   z-index: 10;
 }
 
+@media (max-width: 768px) {
+  main {
+    padding: 1rem; /* Reduce padding on mobile */
+  }
+}
+
 ::selection {
   background: var(--accent-blue-glow);
 }
