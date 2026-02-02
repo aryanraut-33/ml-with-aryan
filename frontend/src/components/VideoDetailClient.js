@@ -8,6 +8,7 @@ import LikeButton from './LikeButton';
 import BookmarkButton from './BookmarkButton';
 import ShareButton from './ShareButton';
 import { convertToEmbedUrl } from 'lib/utils';
+import BlockRenderer from './BlockRenderer';
 
 export default function VideoDetailClient({ video }) {
   const { user } = useAuth();
@@ -46,7 +47,7 @@ export default function VideoDetailClient({ video }) {
         <span>Posted by {video.authorName || 'Admin'}</span>
         <span>{new Date(video.createdAt).toLocaleDateString()}</span>
         <span>{video.views} views</span>
-        
+
         <div className={styles.interactionContainer}>
           {/* {user && (
             <>
@@ -77,12 +78,18 @@ export default function VideoDetailClient({ video }) {
           <p key={index}>{line}</p>
         ))}
       </div>
-      
+
+      {video.blocks && video.blocks.length > 0 && (
+        <div className={styles.additionalContent}>
+          <BlockRenderer blocks={video.blocks} styles={styles} />
+        </div>
+      )}
+
       <div className={styles.tags}>
         {video.tags?.map((tag) => (
           <span key={tag} className={styles.tag}>{tag}</span>
         ))}
-      -</div>
+        -</div>
     </article>
   );
 }

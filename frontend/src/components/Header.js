@@ -22,9 +22,8 @@ const Header = ({ isVisible }) => {
   return (
     <>
       <div
-        className={`${styles.headerContainer} ${
-          !isVisible ? styles.hidden : ''
-        }`}
+        className={`${styles.headerContainer} ${!isVisible ? styles.hidden : ''
+          }`}
       >
         <header className={styles.header}>
           {/* Logo */}
@@ -35,6 +34,7 @@ const Header = ({ isVisible }) => {
           {/* Desktop Navigation */}
           <nav className={styles.nav}>
             <Link href="/blogs">Blogs</Link>
+            <Link href="/projects">Projects</Link>
             <Link href="/videos">Videos</Link>
             {user ? (
               <>
@@ -67,12 +67,14 @@ const Header = ({ isVisible }) => {
 
       {/* Mobile Navigation Drawer */}
       <div
-        className={`${styles.mobileNav} ${
-          isMenuOpen ? styles.open : ''
-        }`}
+        className={`${styles.mobileNav} ${isMenuOpen ? styles.open : ''
+          }`}
       >
         <Link href="/blogs" onClick={handleLinkClick}>
           Blogs
+        </Link>
+        <Link href="/projects" onClick={handleLinkClick}>
+          Projects
         </Link>
         <Link href="/videos" onClick={handleLinkClick}>
           Videos

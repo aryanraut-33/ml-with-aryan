@@ -3,28 +3,40 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './BlogForm.module.css';
+import DynamicBlockEditor from './DynamicBlockEditor';
 
-export default function BlogForm({ onSubmit, initialData = {}, isEditing = false }) {
+export default function BlogForm({ onSubmit, initialData = null, isEditing = false }) {
   // ---------- STATES ----------
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [content, setContent] = useState('');
+  // Content is now derived from blocks, but we keep old 'content' field for migration or simple text
+  // Actually, let's switch to blocks.
+  const [blocks, setBlocks] = useState([]);
+
   const [tags, setTags] = useState('');
   const [thumbnailFile, setThumbnailFile] = useState(null);
   const [thumbnailPreview, setThumbnailPreview] = useState('');
-  const [authorName, setAuthorName] = useState('Admin'); // ✅ NEW FIELD
+  const [authorName, setAuthorName] = useState('Admin');
 
   // ---------- INITIAL DATA ----------
   useEffect(() => {
-    if (isEditing && initialData) {
+    if (initialData) {
       setTitle(initialData.title || '');
       setDescription(initialData.description || '');
-      setContent(initialData.content || '');
       setTags(initialData.tags ? initialData.tags.join(', ') : '');
       setThumbnailPreview(initialData.thumbnailUrl || '');
-      setAuthorName(initialData.authorName || 'Admin'); // ✅ Initialize
+      setAuthorName(initialData.authorName || 'Admin');
+
+      if (initialData.blocks && initialData.blocks.length > 0) {
+        setBlocks(initialData.blocks);
+      } else if (initialData.content) {
+        // Backward compatibility: Convert legacy content string to a text block
+        setBlocks([{ id: 'legacy-1', type: 'text', content: initialData.content }]);
+      } else {
+        setBlocks([{ id: 'init-1', type: 'text', content: '' }]);
+      }
     }
-  }, [isEditing, initialData]);
+  }, [initialData]);
 
   // ---------- FILE HANDLER ----------
   const handleFileChange = (e) => {
@@ -41,10 +53,14 @@ export default function BlogForm({ onSubmit, initialData = {}, isEditing = false
     const blogData = {
       title,
       description,
-      content,
+      // flatten blocks to content string for legacy support if needed, or just send blocks
+      // We will send blocks. The API/Model should handle it.
+      // We also send 'content' as a fallback string (concatenated text) for SEO/search if needed
+      content: blocks.map(b => typeof b.content === 'string' ? b.content : '').join('\n'),
+      blocks,
       tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag),
       thumbnailFile,
-      authorName, // ✅ Include
+      authorName,
     };
     onSubmit(blogData);
   };
@@ -52,94 +68,103 @@ export default function BlogForm({ onSubmit, initialData = {}, isEditing = false
   // ---------- RENDER ----------
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      {/* ---- TITLE ---- */}
-      <label htmlFor="title" className={styles.label}>Title</label>
-      <input
-        id="title"
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-        className={styles.input}
-      />
 
-      {/* ---- AUTHOR NAME ---- */}
-      <label htmlFor="authorName" className={styles.label}>Author Name</label>
-      <input
-        id="authorName"
-        type="text"
-        value={authorName}
-        onChange={(e) => setAuthorName(e.target.value)}
-        required
-        className={styles.input}
-        placeholder="e.g., John Doe"
-      />
-
-      {/* ---- THUMBNAIL UPLOAD ---- */}
-      <label htmlFor="thumbnail" className={styles.label}>Thumbnail Image</label>
-      <input
-        id="thumbnail"
-        type="file"
-        accept="image/png, image/jpeg, image/webp"
-        onChange={handleFileChange}
-        className={styles.input}
-      />
-
-      {thumbnailPreview && (
-        <div className={styles.preview}>
-          <Image
-            src={thumbnailPreview}
-            alt="Thumbnail preview"
-            width={200}
-            height={120}
-            style={{ objectFit: 'cover' }}
+      {/* LEFT COLUMN: Main Editing Area */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <div>
+          <label htmlFor="title" className={styles.label}>Title</label>
+          <input
+            id="title"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            className={styles.input}
+            style={{ fontSize: '1.5rem', fontWeight: 'bold' }}
           />
         </div>
-      )}
 
-      {/* ---- SHORT DESCRIPTION ---- */}
-      <label htmlFor="description" className={styles.label}>Short Description (for cards)</label>
-      <textarea
-        id="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        required
-        className={styles.textarea}
-        rows="3"
-        maxLength="200"
-        placeholder="A brief, engaging summary of the article."
-      />
+        <div>
+          <label htmlFor="description" className={styles.label}>Short Description</label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+            className={styles.textarea}
+            rows="3"
+            placeholder="A brief summary..."
+          />
+        </div>
 
-      {/* ---- MAIN CONTENT ---- */}
-      <label htmlFor="content" className={styles.label}>
-        Content
-        <span style={{ fontSize: '0.8rem', color: '#888', marginLeft: '10px', fontWeight: 'normal' }}>
-          (Supports Markdown & LaTeX: $E=mc^2$)
-        </span>
-      </label>
-      <textarea
-        id="content"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        required
-        className={styles.textarea}
-        rows="15"
-      />
+        {/* ---- DYNAMIC CONTENT BLOCKS ---- */}
+        <div>
+          <label className={styles.label} style={{ marginBottom: '1rem', display: 'block' }}>Content</label>
+          <DynamicBlockEditor blocks={blocks} setBlocks={setBlocks} />
+        </div>
+      </div>
 
-      {/* ---- TAGS ---- */}
-      <label htmlFor="tags" className={styles.label}>Tags (comma-separated)</label>
-      <input
-        id="tags"
-        type="text"
-        value={tags}
-        onChange={(e) => setTags(e.target.value)}
-        className={styles.input}
-      />
+      {/* RIGHT COLUMN: Sidebar (Meta & Media) */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
 
-      {/* ---- SUBMIT BUTTON ---- */}
-      <button type="submit" className={styles.button}>
-        {isEditing ? 'Update Blog' : 'Create Blog'}
-      </button>
+        <div style={{ background: '#111', padding: '1.5rem', borderRadius: '12px', border: '1px solid #333' }}>
+          <label htmlFor="authorName" className={styles.label}>Author</label>
+          <input
+            id="authorName"
+            type="text"
+            value={authorName}
+            onChange={(e) => setAuthorName(e.target.value)}
+            required
+            className={styles.input}
+          />
+        </div>
+
+        <div style={{ background: '#111', padding: '1.5rem', borderRadius: '12px', border: '1px solid #333' }}>
+          <label htmlFor="thumbnail" className={styles.label}>Thumbnail</label>
+
+          {thumbnailPreview && (
+            <div className={styles.preview} style={{ marginBottom: '1rem' }}>
+              <Image
+                src={thumbnailPreview}
+                alt="Preview"
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+          )}
+
+          <input
+            id="thumbnail"
+            type="file"
+            accept="image/png, image/jpeg, image/webp"
+            onChange={handleFileChange}
+            className={styles.input}
+            style={{ fontSize: '0.8rem' }}
+          />
+        </div>
+
+        <div style={{ background: '#111', padding: '1.5rem', borderRadius: '12px', border: '1px solid #333' }}>
+          <label htmlFor="tags" className={styles.label}>Tags</label>
+          <input
+            id="tags"
+            type="text"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+            className={styles.input}
+            placeholder="tech, ai, coding"
+          />
+          <small style={{ color: '#666', marginTop: '0.5rem', display: 'block' }}>Comma separated</small>
+        </div>
+
+        {/* Sticky Submit Button Strategy: Place it here or at bottom? 
+              Let's put main submit at bottom of form spanning full width, or here in sidebar?
+              Sidebar is good for "Publish" button. 
+           */}
+        <button type="submit" className={styles.button} style={{ marginTop: '0' }}>
+          {isEditing ? 'Update Post' : 'Publish Post'}
+        </button>
+
+      </div>
     </form>
   );
 }

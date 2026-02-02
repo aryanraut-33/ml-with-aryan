@@ -31,6 +31,9 @@ export default function AdminHeader({ onLogout, isMenuOpen, setIsMenuOpen }) {
           <Link href="/admin/blogs" className={pathname.startsWith('/admin/blogs') ? styles.active : ''}>
             <FiFileText /> Manage Blogs
           </Link>
+          <Link href="/admin/projects" className={pathname.startsWith('/admin/projects') ? styles.active : ''}>
+            <FiGrid /> Manage Projects
+          </Link>
           <Link href="/admin/videos" className={pathname.startsWith('/admin/videos') ? styles.active : ''}>
             <FiVideo /> Manage Videos
           </Link>
@@ -51,6 +54,7 @@ export default function AdminHeader({ onLogout, isMenuOpen, setIsMenuOpen }) {
         <nav className={styles.mobileAdminNav}>
           <Link href="/admin" onClick={handleLinkClick}>Dashboard</Link>
           <Link href="/admin/blogs" onClick={handleLinkClick}>Manage Blogs</Link>
+          <Link href="/admin/projects" onClick={handleLinkClick}>Manage Projects</Link>
           <Link href="/admin/videos" onClick={handleLinkClick}>Manage Videos</Link>
         </nav>
       </div>

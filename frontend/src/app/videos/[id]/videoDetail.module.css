@@ -84,3 +84,67 @@
     display: none;
   }
 }
+/* Dynamic Blocks Styles */
+.blocksContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.blockHeading {
+    font-size: 1.8rem;
+    color: white;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.blockText {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #ddd;
+}
+
+.blockImageWrapper {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.blockImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.caption {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 0.5rem;
+    font-style: italic;
+    text-align: center;
+}
+
+.blockVideoContainer {
+    margin: 2rem 0;
+}
+
+.videoWrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    border: 1px solid #333;
+}
+
+.iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}

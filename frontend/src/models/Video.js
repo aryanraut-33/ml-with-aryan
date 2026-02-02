@@ -41,6 +41,17 @@ const videoSchema = new mongoose.Schema({
         type: [String],
         default: [],
     },
+
+    // ✅ Dynamic Content Blocks (New Flexible Structure)
+    blocks: [{
+        id: String,
+        type: {
+            type: String,
+            enum: ['text', 'image', 'video', 'code', 'heading'],
+            required: true
+        },
+        content: mongoose.Schema.Types.Mixed,
+    }],
 }, { timestamps: true });
 
 const Video = mongoose.models.Video || mongoose.model('Video', videoSchema);

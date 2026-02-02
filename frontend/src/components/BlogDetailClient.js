@@ -14,6 +14,7 @@ import api from 'lib/api';
 import LikeButton from './LikeButton';
 import BookmarkButton from './BookmarkButton';
 import ShareButton from './ShareButton';
+import BlockRenderer from './BlockRenderer';
 
 export default function BlogDetailClient({ blog }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -76,12 +77,16 @@ export default function BlogDetailClient({ blog }) {
         </div>
       )}
       <div className={styles.content}>
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm, remarkMath]}
-          rehypePlugins={[rehypeKatex]}
-        >
-          {blog.content}
-        </ReactMarkdown>
+        {blog.blocks && blog.blocks.length > 0 ? (
+          <BlockRenderer blocks={blog.blocks} styles={styles} />
+        ) : (
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm, remarkMath]}
+            rehypePlugins={[rehypeKatex]}
+          >
+            {blog.content}
+          </ReactMarkdown>
+        )}
       </div>
       <div className={styles.tags}>
         {blog.tags?.map((tag) => <span key={tag} className={styles.tag}>{tag}</span>)}
