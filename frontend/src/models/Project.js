@@ -91,6 +91,13 @@ const projectSchema = new mongoose.Schema({
         type: String,
         trim: true,
         default: '',
+    },
+
+    // ✅ Companion Link (optional)
+    companionLink: {
+        type: String,
+        trim: true,
+        default: '',
     }
 
 }, { timestamps: true });

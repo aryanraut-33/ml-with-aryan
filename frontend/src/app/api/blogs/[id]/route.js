@@ -38,7 +38,7 @@ export async function PUT(req, { params }) {
 
         const { id } = await params;
         const body = await req.json();
-        const { title, content, tags, thumbnailUrl, description, authorName } = body;
+        const { title, content, tags, thumbnailUrl, description, authorName, projectLink } = body;
 
         const blog = await Blog.findById(id);
 
@@ -49,6 +49,7 @@ export async function PUT(req, { params }) {
             blog.thumbnailUrl = thumbnailUrl !== undefined ? thumbnailUrl : blog.thumbnailUrl;
             blog.description = description || blog.description;
             blog.authorName = authorName || blog.authorName;
+            blog.projectLink = projectLink !== undefined ? projectLink : blog.projectLink;
 
             const updatedBlog = await blog.save();
             return NextResponse.json(updatedBlog);

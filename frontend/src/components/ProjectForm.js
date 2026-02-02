@@ -21,6 +21,7 @@ export default function ProjectForm({ initialData = null }) {
         technologies: "",
         demoUrl: "",
         repoUrl: "",
+        companionLink: "",
     });
 
     const [thumbnailFile, setThumbnailFile] = useState(null);
@@ -38,6 +39,7 @@ export default function ProjectForm({ initialData = null }) {
                 technologies: initialData.technologies ? initialData.technologies.join(", ") : "",
                 demoUrl: initialData.demoUrl || "",
                 repoUrl: initialData.repoUrl || "",
+                companionLink: initialData.companionLink || "",
             });
 
             // Initialize blocks
@@ -213,9 +215,13 @@ export default function ProjectForm({ initialData = null }) {
                         <label className={styles.label}>Demo URL</label>
                         <input name="demoUrl" value={formData.demoUrl} onChange={handleChange} className={styles.input} placeholder="https://..." />
                     </div>
-                    <div>
+                    <div style={{ marginBottom: '1rem' }}>
                         <label className={styles.label}>Repo URL</label>
                         <input name="repoUrl" value={formData.repoUrl} onChange={handleChange} className={styles.input} placeholder="https://github.com/..." />
+                    </div>
+                    <div>
+                        <label className={styles.label}>Companion Link</label>
+                        <input name="companionLink" value={formData.companionLink} onChange={handleChange} className={styles.input} placeholder="Link to blog/article..." />
                     </div>
                 </div>
 

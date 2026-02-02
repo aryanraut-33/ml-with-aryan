@@ -47,25 +47,46 @@ export default function BlogDetailClient({ blog }) {
         <span>By {blog.authorName || blog.author?.username || 'Admin'}</span>
         <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
         <span>{blog.views || 0} views</span>
-        <div className={styles.interactionContainer}>
-          {/* --- THIS IS THE FIX --- */}
-          {/* Uncommented the buttons to restore functionality */}
-          {/* {user && (
-            <>
-              <LikeButton
-                contentId={blog._id}
-                contentType="blog"
-                isInitiallyLiked={interactions.liked}
-              />
-              <BookmarkButton
-                contentId={blog._id}
-                contentType="blog"
-                isInitiallyBookmarked={interactions.bookmarked}
-              />
-            </>
-          )} */}
-          {/* ----------------------- */}
-          <ShareButton />
+
+        {/* Second Line: Project Link and Actions */}
+        <div style={{
+          flexBasis: '100%',
+          marginTop: '0.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between', /* Spread them out or use gap */
+          flexWrap: 'wrap',
+          gap: '1rem'
+        }}>
+
+          {/* Left: Project Link (if exists) */}
+          {blog.projectLink ? (
+            <a
+              href={blog.projectLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.4rem 1rem',
+                background: '#334155',
+                color: '#e2e8f0',
+                borderRadius: '8px', /* Rectangle with rounded edges */
+                textDecoration: 'none',
+                fontSize: '0.85rem',
+                fontWeight: '500',
+                border: '1px solid #475569'
+              }}
+            >
+              View Related Project
+            </a>
+          ) : <span></span> /* Empty span to keep space-between layout if no link? Or just normal flex */}
+
+          {/* Right: Share / Actions */}
+          <div className={styles.interactionContainer} style={{ marginLeft: 0 }}>
+            <ShareButton />
+          </div>
         </div>
       </div>
       {blog.thumbnailUrl && (

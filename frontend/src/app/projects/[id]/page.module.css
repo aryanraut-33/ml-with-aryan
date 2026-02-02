@@ -204,7 +204,8 @@
 
 @media (max-width: 768px) {
     .container {
-        padding: 1.5rem 1rem !important;
+        padding: 1.5rem 0.5rem !important;
+        /* Reduced side padding (was 1rem) */
         overflow-wrap: break-word;
     }
 
@@ -213,7 +214,8 @@
     }
 
     .description {
-        font-size: 1rem !important;
+        font-size: 0.875rem !important;
+        /* Reduced to ~14px */
     }
 
     .blockHeading {
@@ -221,10 +223,27 @@
     }
 
     .blockText {
-        font-size: 1rem !important;
+        font-size: 0.875rem !important;
+        /* Reduced to ~14px */
     }
 
     .header {
         margin-bottom: 1.5rem;
+    }
+
+    .links {
+        flex-wrap: wrap;
+        /* Allow wrapping if needed */
+        gap: 0.5rem;
+        /* Reduce gap */
+    }
+
+    .linkButton {
+        padding: 0.4rem 0.8rem !important;
+        /* Smaller padding */
+        font-size: 0.8rem !important;
+        /* Smaller font */
+        width: auto;
+        /* Let it decide width */
     }
 }

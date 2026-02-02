@@ -17,7 +17,8 @@
   align-items: center;
   color: var(--text-secondary);
   font-size: 0.9rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
+  /* Reduced from 2.5rem */
 }
 
 .thumbnail {
@@ -180,68 +181,69 @@
     display: none;
   }
 }
+
 /* Dynamic Blocks Styles */
 .blocksContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
 }
 
 .blockHeading {
-    font-size: 1.8rem;
-    color: white;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .blockText {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: #ddd;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ddd;
 }
 
 .blockImageWrapper {
-    margin: 1.5rem 0;
-    text-align: center;
+  margin: 1.5rem 0;
+  text-align: center;
 }
 
 .blockImage {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .caption {
-    font-size: 0.9rem;
-    color: #888;
-    margin-top: 0.5rem;
-    font-style: italic;
-    text-align: center;
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 0.5rem;
+  font-style: italic;
+  text-align: center;
 }
 
 .blockVideoContainer {
-    margin: 2rem 0;
+  margin: 2rem 0;
 }
 
 /* Reusing video styles but scoped to blocks */
 .videoWrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    background: #000;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 0.5rem;
-    border: 1px solid #333;
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  border: 1px solid #333;
 }
 
 .iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }

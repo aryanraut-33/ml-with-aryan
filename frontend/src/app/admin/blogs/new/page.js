@@ -22,7 +22,7 @@ export default function NewBlogPage() {
       if (blogData.thumbnailFile) {
         const formData = new FormData();
         formData.append('image', blogData.thumbnailFile);
-        
+
         const uploadRes = await api.post('/api/upload', formData, {
           headers: { 'Content-Type': 'multipart/form-data' },
         });
@@ -37,6 +37,7 @@ export default function NewBlogPage() {
         tags: blogData.tags,
         authorName: blogData.authorName,
         thumbnailUrl: thumbnailUrl,
+        projectLink: blogData.projectLink,
       };
 
       // Step 3: Create the blog post with the final data
@@ -54,7 +55,7 @@ export default function NewBlogPage() {
   return (
     <div>
       <h1>Add New Blog</h1>
-      
+
       {/* Utility for uploading images to be used inside the blog content */}
       <ImageUploader />
 

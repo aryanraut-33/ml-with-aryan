@@ -15,6 +15,13 @@ const blogSchema = new mongoose.Schema({
         default: '',
     },
 
+    // ✅ Optional Link to Related Project
+    projectLink: {
+        type: String,
+        trim: true,
+        default: '',
+    },
+
     // ✅ Short description for previews / SEO
     description: {
         type: String,

@@ -56,7 +56,7 @@ export async function POST(req) {
         }
 
         const body = await req.json();
-        const { title, content, tags, thumbnailUrl, description, authorName } = body;
+        const { title, content, tags, thumbnailUrl, description, authorName, projectLink } = body;
 
         const blog = new Blog({
             title,
@@ -65,6 +65,7 @@ export async function POST(req) {
             thumbnailUrl,
             description,
             authorName: authorName || user.username || 'Admin',
+            projectLink,
             author: user._id,
         });
 

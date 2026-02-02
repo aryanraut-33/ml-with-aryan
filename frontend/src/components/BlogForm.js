@@ -17,6 +17,7 @@ export default function BlogForm({ onSubmit, initialData = null, isEditing = fal
   const [thumbnailFile, setThumbnailFile] = useState(null);
   const [thumbnailPreview, setThumbnailPreview] = useState('');
   const [authorName, setAuthorName] = useState('Admin');
+  const [projectLink, setProjectLink] = useState('');
 
   // ---------- INITIAL DATA ----------
   useEffect(() => {
@@ -26,6 +27,7 @@ export default function BlogForm({ onSubmit, initialData = null, isEditing = fal
       setTags(initialData.tags ? initialData.tags.join(', ') : '');
       setThumbnailPreview(initialData.thumbnailUrl || '');
       setAuthorName(initialData.authorName || 'Admin');
+      setProjectLink(initialData.projectLink || '');
 
       if (initialData.blocks && initialData.blocks.length > 0) {
         setBlocks(initialData.blocks);
@@ -61,6 +63,7 @@ export default function BlogForm({ onSubmit, initialData = null, isEditing = fal
       tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag),
       thumbnailFile,
       authorName,
+      projectLink,
     };
     onSubmit(blogData);
   };
@@ -154,6 +157,18 @@ export default function BlogForm({ onSubmit, initialData = null, isEditing = fal
             placeholder="tech, ai, coding"
           />
           <small style={{ color: '#666', marginTop: '0.5rem', display: 'block' }}>Comma separated</small>
+        </div>
+
+        <div style={{ background: '#111', padding: '1.5rem', borderRadius: '12px', border: '1px solid #333' }}>
+          <label htmlFor="projectLink" className={styles.label}>Project Link (Optional)</label>
+          <input
+            id="projectLink"
+            type="text"
+            value={projectLink}
+            onChange={(e) => setProjectLink(e.target.value)}
+            className={styles.input}
+            placeholder="https://..."
+          />
         </div>
 
         {/* Sticky Submit Button Strategy: Place it here or at bottom? 

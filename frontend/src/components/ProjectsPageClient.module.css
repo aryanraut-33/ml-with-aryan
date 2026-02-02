@@ -144,4 +144,21 @@
     .container {
         padding: 1rem;
     }
+
+    .header {
+        margin-top: 3rem;
+        /* Increase gap from top navbar */
+    }
+
+    /* Reduce Toggle Button Size on Mobile */
+    .toggleButton {
+        padding: 0.5rem 1.2rem !important;
+        /* Reduced padding */
+        font-size: 0.9rem !important;
+        /* Reduced font size */
+    }
+
+    .subtitle {
+        display: none;
+    }
 }

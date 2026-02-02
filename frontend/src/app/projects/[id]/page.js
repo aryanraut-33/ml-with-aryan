@@ -57,6 +57,7 @@ export default async function ProjectDetailPage({ params }) {
 
     const repoUrl = ensureAbsoluteUrl(project.repoUrl);
     const demoUrl = ensureAbsoluteUrl(project.demoUrl);
+    const companionLink = ensureAbsoluteUrl(project.companionLink);
 
     return (
         <div className={styles.container}>
@@ -76,6 +77,11 @@ export default async function ProjectDetailPage({ params }) {
                     {demoUrl && (
                         <a href={demoUrl} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
                             <FiExternalLink /> Live Demo
+                        </a>
+                    )}
+                    {companionLink && (
+                        <a href={companionLink} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
+                            <FiExternalLink /> Companion Article
                         </a>
                     )}
                 </div>

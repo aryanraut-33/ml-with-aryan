@@ -60,11 +60,12 @@ export default function EditBlogPage() {
         tags: blogData.tags,
         authorName: blogData.authorName,
         thumbnailUrl: thumbnailUrl,
+        projectLink: blogData.projectLink,
       };
 
       // Step 3: Update the blog post with the final data
       await api.put(`/api/blogs/${id}`, finalBlogData);
-      
+
       alert('Blog updated successfully!');
       router.push('/admin/blogs');
 
@@ -81,10 +82,10 @@ export default function EditBlogPage() {
   return (
     <div>
       <h1>Edit Blog</h1>
-      
+
       {/* Utility for uploading images to be used inside the blog content */}
       <ImageUploader />
-      
+
       {/* The main form, pre-filled with existing blog data */}
       <BlogForm onSubmit={handleSubmit} initialData={blog} isEditing={true} />
 

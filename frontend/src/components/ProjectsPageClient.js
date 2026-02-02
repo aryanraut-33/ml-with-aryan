@@ -14,7 +14,7 @@ export default function ProjectsPageClient({ initialProjects }) {
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <h1 className={styles.title}>Projects Showcase</h1>
+                <h1 className={styles.title}>Projects Gallery</h1>
                 <p className={styles.subtitle}>Explore my journey through code, from fundamental algorithms to production-grade applications.</p>
 
                 <div className={styles.toggleWrapper}>
