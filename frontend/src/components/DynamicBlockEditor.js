@@ -20,7 +20,7 @@ export default function DynamicBlockEditor({ blocks, setBlocks }) {
     const getDefaultContentForType = (type) => {
         switch (type) {
             case 'text': return '';
-            case 'heading': return '';
+            case 'heading': return { text: '', level: 'h2' };
             case 'image': return { url: '', caption: '' };
             case 'video': return { url: '', caption: '' };
             case 'code': return { code: '', language: 'javascript', filename: '' };
@@ -56,7 +56,9 @@ export default function DynamicBlockEditor({ blocks, setBlocks }) {
         const newBlocks = [...blocks];
         // Ensure content is an object for structured types
         if (typeof newBlocks[index].content !== 'object') {
-            // Should not happen for image/video/code
+            // convert string to object if needed for migration? 
+            // For now, if it's a string (legacy heading), let's convert it on the fly or just handle it.
+            // But this function assumes object.
             return;
         }
         newBlocks[index].content = { ...newBlocks[index].content, [field]: value };
@@ -86,15 +88,42 @@ export default function DynamicBlockEditor({ blocks, setBlocks }) {
     const renderBlockInput = (block, index) => {
         switch (block.type) {
             case 'heading':
+                // Backward compatibility for string content
+                const isString = typeof block.content === 'string';
+                const textValue = isString ? block.content : (block.content.text || '');
+                const levelValue = isString ? 'h2' : (block.content.level || 'h2');
+
+                const handleHeadingChange = (field, val) => {
+                    if (isString) {
+                        // Convert to object
+                        const newContent = { text: textValue, level: levelValue, [field]: val };
+                        updateBlockContent(index, newContent);
+                    } else {
+                        updateBlockField(index, field, val);
+                    }
+                };
+
                 return (
-                    <input
-                        type="text"
-                        value={block.content}
-                        onChange={(e) => updateBlockContent(index, e.target.value)}
-                        placeholder="Heading Text"
-                        className={styles.input}
-                        style={{ fontSize: '1.2rem', fontWeight: 'bold' }}
-                    />
+                    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                        <select
+                            value={levelValue}
+                            onChange={(e) => handleHeadingChange('level', e.target.value)}
+                            className={styles.select}
+                            style={{ width: '80px' }}
+                        >
+                            {['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map(h => (
+                                <option key={h} value={h}>{h.toUpperCase()}</option>
+                            ))}
+                        </select>
+                        <input
+                            type="text"
+                            value={textValue}
+                            onChange={(e) => handleHeadingChange('text', e.target.value)}
+                            placeholder="Heading Text"
+                            className={styles.input}
+                            style={{ fontSize: '1.2rem', fontWeight: 'bold', flex: 1 }}
+                        />
+                    </div>
                 );
             case 'text':
                 return (

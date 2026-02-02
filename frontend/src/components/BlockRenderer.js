@@ -19,7 +19,9 @@ export default function BlockRenderer({ blocks, styles }) {
             {blocks.map((block) => {
                 switch (block.type) {
                     case 'heading':
-                        return <h2 key={block.id || Math.random()} className={styles.blockHeading}>{block.content}</h2>;
+                        const HeadingTag = typeof block.content === 'object' ? (block.content.level || 'h2') : 'h2';
+                        const headingText = typeof block.content === 'object' ? block.content.text : block.content;
+                        return <HeadingTag key={block.id || Math.random()} className={styles.blockHeading}>{headingText}</HeadingTag>;
                     case 'text':
                         // Supporting paragraphs with line breaks
                         return (
