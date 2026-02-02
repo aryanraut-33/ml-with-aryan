@@ -37,6 +37,13 @@ function getYouTubeId(url) {
     return (match && match[2].length === 11) ? match[2] : null;
 }
 
+// Helper to ensure URL has protocol
+function ensureAbsoluteUrl(url) {
+    if (!url) return null;
+    if (url.startsWith('http://') || url.startsWith('https://')) return url;
+    return `https://${url}`;
+}
+
 export default async function ProjectDetailPage({ params }) {
     const { id } = await params;
     const project = await getProject(id);
@@ -48,6 +55,9 @@ export default async function ProjectDetailPage({ params }) {
     const videoId = getYouTubeId(project.videoUrl);
     const hasDynamicBlocks = project.blocks && project.blocks.length > 0;
 
+    const repoUrl = ensureAbsoluteUrl(project.repoUrl);
+    const demoUrl = ensureAbsoluteUrl(project.demoUrl);
+
     return (
         <div className={styles.container}>
             <Link href="/projects" className={styles.backLink}>
@@ -58,13 +68,13 @@ export default async function ProjectDetailPage({ params }) {
                 <div className={styles.badge} data-type={project.type}>{project.type}</div>
                 <h1 className={styles.title}>{project.title}</h1>
                 <div className={styles.links}>
-                    {project.repoUrl && (
-                        <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
+                    {repoUrl && (
+                        <a href={repoUrl} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
                             <FiGithub /> Repository
                         </a>
                     )}
-                    {project.demoUrl && (
-                        <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
+                    {demoUrl && (
+                        <a href={demoUrl} target="_blank" rel="noopener noreferrer" className={styles.linkButton}>
                             <FiExternalLink /> Live Demo
                         </a>
                     )}
@@ -93,7 +103,9 @@ export default async function ProjectDetailPage({ params }) {
                         {project.blocks.map((block) => {
                             switch (block.type) {
                                 case 'heading':
-                                    return <h2 key={block.id || Math.random()} className={styles.blockHeading}>{block.content}</h2>;
+                                    const HeadingTag = typeof block.content === 'object' ? (block.content.level || 'h2') : 'h2';
+                                    const headingText = typeof block.content === 'object' ? block.content.text : block.content;
+                                    return <HeadingTag key={block.id || Math.random()} className={styles.blockHeading}>{headingText}</HeadingTag>;
                                 case 'text':
                                     // Supporting paragraphs with line breaks
                                     return (
@@ -136,6 +148,7 @@ export default async function ProjectDetailPage({ params }) {
                                             language={block.content.language}
                                             code={block.content.code}
                                             filename={block.content.filename}
+                                            repoUrl={repoUrl}
                                         />
                                     );
                                 default:
@@ -167,6 +180,7 @@ export default async function ProjectDetailPage({ params }) {
                                         language={block.language}
                                         code={block.code}
                                         filename={block.filename}
+                                        repoUrl={repoUrl}
                                     />
                                 ))}
                             </div>

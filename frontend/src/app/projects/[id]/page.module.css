@@ -204,30 +204,24 @@
 
 @media (max-width: 768px) {
     .container {
-        padding: 1.5rem 1rem;
-        /* Increased from 0.5rem to 1rem for better spacing */
+        padding: 1.5rem 1rem !important;
         overflow-wrap: break-word;
-        /* Ensure long words don't overflow */
     }
 
     .title {
-        font-size: 1.8rem;
-        /* Reduced from 2.5rem */
+        font-size: 1.8rem !important;
     }
 
     .description {
-        font-size: 1rem;
-        /* Reduced from 1.1rem */
+        font-size: 1rem !important;
     }
 
     .blockHeading {
-        font-size: 1.4rem;
-        /* Reduced from 1.8rem */
+        font-size: 1.4rem !important;
     }
 
     .blockText {
-        font-size: 1rem;
-        /* Reduced from 1.1rem */
+        font-size: 1rem !important;
     }
 
     .header {

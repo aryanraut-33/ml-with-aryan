@@ -1,0 +1,39 @@
+.desktopView {
+    display: block;
+}
+
+.mobileView {
+    display: none;
+}
+
+.mobileButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #e0e0e0;
+    text-decoration: none;
+    font-family: monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 1.5rem;
+}
+
+.mobileButton:hover {
+    background: #2d2d2d;
+}
+
+@media (max-width: 768px) {
+    .desktopView {
+        display: none;
+    }
+
+    .mobileView {
+        display: block;
+    }
+}
