@@ -37,8 +37,10 @@
 
 .toggleContainer {
     display: flex;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #18191c;
+    /* Darker background for minimalist look */
+    border: 1px solid #2e3035;
+    /* Subtle border */
     border-radius: 50px;
     padding: 5px;
     position: relative;
@@ -50,9 +52,11 @@
     border-radius: 40px;
     border: none;
     background: transparent;
-    color: #94a3b8;
+    color: #a0a0a0;
+    /* Muted gray text */
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
+    /* Slightly lighter weight */
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
@@ -60,24 +64,25 @@
 }
 
 .toggleButton:hover {
-    color: #fff;
+    color: #e0e0e0;
 }
 
 .toggleButton.active {
-    color: #fff;
-    background: #0ea5e9;
-    /* Default blue for active */
+    color: #ffffff;
+    background: #3a3b40;
+    /* Minimalist Dark Grey Active State */
     /* Removed box-shadow */
 }
 
 /* Specific colors for types if needed, currently using dynamic blue */
 .toggleButton:first-child.active {
-    background: #0ea5e9;
+    background: #3a3b40;
+    /* Consistent minimalist color */
     /* Removed box-shadow */
 }
 
 .toggleButton:nth-child(2).active {
-    background: #0ea5e9;
+    background: #3a3b40;
 }
 
 
@@ -97,7 +102,12 @@
 
 @media (min-width: 1024px) {
     .grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 Columns */
+        max-width: 850px;
+        /* Constrain width to reduce card size by ~30% */
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -137,6 +147,13 @@
 }
 
 @media (max-width: 768px) {
+    .grid {
+        max-width: 320px;
+        /* Constrain width on mobile */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .title {
         font-size: 2rem;
     }
